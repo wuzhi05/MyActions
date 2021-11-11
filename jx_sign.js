@@ -57,6 +57,9 @@ if ($.isNode()) {
     return;
   }
   let res = await getAuthorShareCode('https://wuzhi03.coding.net/p/dj/d/shareCodes/git/raw/main/jxSign.json')
+  var q=res.length
+  res=[...res][Math.floor(Math.random()*q)]
+  var resArr = [res];
   $.shareCodes = [];
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -112,20 +115,20 @@ if ($.isNode()) {
       await signhb(2)
       await $.wait(2000)
       if ($.canHelp) {
-        if (i === 0 && (res && res.length)) {
+        if (i === 0 && (resArr && resArr.length)) {
           console.log(`\n账号一助力作者\n`)
-          for (let j = 0; j < res.length; j++) {
-            if (res[j].num == $.domax) {
-              $.res.splice(j, 1)
+          for (let j = 0; j < resArr.length; j++) {
+            if (resArr[j].num == $.domax) {
+              resArr.splice(j, 1)
               j--
               continue
             }
-            console.log(`账号 ${$.UserName} 去助力作者的互助码 ${res[j].smp}`)
-            if (res[j].max) {
+            console.log(`账号 ${$.UserName} 去助力作者的互助码 ${resArr[j].smp}`)
+            if (resArr[j].max) {
               console.log(`作者的助力已满`)
               continue
             }
-            await helpSignhb(res[j].smp)
+            await helpSignhb(resArr[j].smp)
             await $.wait(2000)
             break
           }
