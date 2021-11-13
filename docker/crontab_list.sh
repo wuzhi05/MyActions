@@ -64,30 +64,14 @@
 15 9,18 * * * node /scripts/jd_jmtask.js >> /scripts/logs/jd_jmtask.log 2>&1
 #财富岛热气球接待
 30 * * * * node /scripts/jd_cfd_loop.js >> /scripts/logs/jd_cfd_loop.log 2>&1
-#jd_opencard22
-05 3,18 * * * node /scripts/jd_opencard22.js >> /scripts/logs/jd_opencard22.log 2>&1
 #jd_opencard21
 30 2,20 * * * node /scripts/jd_opencard21.js >> /scripts/logs/jd_opencard21.log 2>&1
-#jd_opencard20
-30 1,23 * * * node /scripts/jd_opencard20.js >> /scripts/logs/jd_opencard20.log 2>&1
 #jd_opencard19
 30 6,21 * * * node /scripts/jd_opencard19.js >> /scripts/logs/jd_opencard19.log 2>&1
-#jd_opencard15
-55 4,14 * * * node /scripts/jd_opencard15.js >> /scripts/logs/jd_opencard15.log 2>&1
-#jd_opencard14
-55 5,15 * * * node /scripts/jd_opencard14.js >> /scripts/logs/jd_opencard14.log 2>&1
-#jd_opencard10
-05 3,19 * * * node /scripts/jd_opencard10.js >> /scripts/logs/jd_opencard10.log 2>&1
 #jd_opencard17
 05 2,21 * * * node /scripts/jd_opencard17.js >> /scripts/logs/jd_opencard17.log 2>&1
 #jd_ddworld_exchange
 0 0,9 * * * node /scripts/jd_ddworld_exchangebean.js >> /scripts/logs/jd_ddworld_exchangebean.log 2>&1
-# 预售福利姬
-5 0,2 * * * node /scripts/jd_ys.js >> /scripts/logs/jd_ys.log 2>&1
-# 手机狂欢城
-0 0,3 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
-# 手机狂欢城help
-20 1,3 * * * node /scripts/jd_carnivalcity_help.js >> /scripts/logs/jd_carnivalcity_help.log 2>&1
 # 推一推
 20 3,13 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 # 省钱大赢家翻翻乐
@@ -143,8 +127,6 @@
 20 * * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
 # 京喜工厂开团
 20 9,13,16 * * * node /scripts/jd_dreamFactory_tuan.js >> /scripts/logs/jd_dreamFactory_tuan.log 2>&1
-# 东东小窝
-16 6,23 * * * node /scripts/jd_small_home.js >> /scripts/logs/jd_small_home.log 2>&1
 # 东东工厂
 36 */4 * * * node /scripts/jd_jdfactory.js >> /scripts/logs/jd_jdfactory.log 2>&1
 # 京东快递签到

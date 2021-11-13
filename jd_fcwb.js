@@ -35,7 +35,7 @@ let cookiesArr = [], cookie = '', message;
 let isLoginInfo = {};
 $.shareCodes=[];
 let fcwbroud = '';
-$.linkId="yCcpwTLIbY6pjaM42ACUVg";
+$.linkId="pTTvJeSTrpthgk9ASBVGsw";
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
