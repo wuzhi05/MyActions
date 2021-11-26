@@ -84,6 +84,8 @@
 20 2,18 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
 #jd_opencard24
 35 0,13 23-30 11 * node /scripts/jd_opencard24.js >> /scripts/logs/jd_opencard24.log 2>&1
+#jd_opencard24
+40 0,13 25-30 11 * node /scripts/jd_opencard25.js >> /scripts/logs/jd_opencard25.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
