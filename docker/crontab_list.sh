@@ -78,10 +78,8 @@
 12 * * * * node /scripts/jd_syj.js >> /scripts/logs/jd_syj.log 2>&1
 # 饭粒
 20 2,18 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
-#jd_opencard24
-35 0,13 23-30 11 * node /scripts/jd_opencard24.js >> /scripts/logs/jd_opencard24.log 2>&1
-#jd_opencard24
-40 0,13 25-30 11 * node /scripts/jd_opencard25.js >> /scripts/logs/jd_opencard25.log 2>&1
+#jd_opencard26
+35 3,9,18 1-15 12 * node /scripts/jd_opencard26.js >> /scripts/logs/jd_opencard26.log 2>&1
 #兑换7天过期喜豆
 30 20 * * * node /scripts/jd_exchangejxbeans.js >> /scripts/logs/jd_exchangejxbeans.log 2>&1
 ##############长期活动##############
