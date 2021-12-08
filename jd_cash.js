@@ -333,8 +333,8 @@ function doTask(type,taskInfo) {
             if( data.code === 0){
               console.log(`任务完成成功`)
               // console.log(data.data.result.taskInfos)
-            }else{
-              console.log(data)
+            } else {
+              console.log(JSON.stringify(data))
             }
           }
         }
