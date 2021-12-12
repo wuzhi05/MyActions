@@ -84,6 +84,8 @@
 35 2,8,17 10-25 12 * node /scripts/jd_opencard28.js >> /scripts/logs/jd_opencard28.log 2>&1
 #jd_opencard29
 35 1,7,16 10-21 12 * node /scripts/jd_opencard29.js >> /scripts/logs/jd_opencard29.log 2>&1
+#jd_opencard30
+45 0,6,15 10-20 12 * node /scripts/jd_opencard30.js >> /scripts/logs/jd_opencard30.log 2>&1
 #兑换7天过期喜豆
 30 20 * * * node /scripts/jd_exchangejxbeans.js >> /scripts/logs/jd_exchangejxbeans.log 2>&1
 #金榜年终奖
