@@ -88,8 +88,6 @@
 45 0,6,15 10-20 12 * node /scripts/jd_opencard30.js >> /scripts/logs/jd_opencard30.log 2>&1
 #兑换7天过期喜豆
 30 20 * * * node /scripts/jd_exchangejxbeans.js >> /scripts/logs/jd_exchangejxbeans.log 2>&1
-#金榜年终奖
-10 0,2 * * * node /scripts/jd_split.js >> /scripts/logs/jd_split.log 2>&1
 #京东小魔方--收集兑换
 31 8 * * * node /scripts/jd_mofang_ex.js >> /scripts/logs/jd_mofang_ex.log 2>&1
 #暖暖红包
