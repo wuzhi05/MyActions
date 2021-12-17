@@ -28,8 +28,6 @@
 0-59/30 * * * * node /scripts/jd_moneyTree_help.js >> /scripts/logs/jd_moneyTree_help.log 2>&1
 # MMdou
 21 9 * * * node /scripts/jd_MMdou.js >> /scripts/logs/jd_MMdou.log 2>&1
-#京喜领88元红包
-30 1,6,12,15,18 * * * node /scripts/jd_jxlhb.js >> /scripts/logs/jd_jxlhb.log 2>&1
 #京喜首页签到
 20 1 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 #特物
@@ -74,12 +72,6 @@
 20 1,9,16 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
 # 赚京豆(微信小程序)
 12 * * * * node /scripts/jd_syj.js >> /scripts/logs/jd_syj.log 2>&1
-# 饭粒
-20 2,18 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
-#jd_opencard26
-35 3,9,18 1-15 12 * node /scripts/jd_opencard26.js >> /scripts/logs/jd_opencard26.log 2>&1
-#jd_opencard27
-35 4,19 7-15 12 * node /scripts/jd_opencard27.js >> /scripts/logs/jd_opencard27.log 2>&1
 #jd_opencard28
 35 2,8,17 10-25 12 * node /scripts/jd_opencard28.js >> /scripts/logs/jd_opencard28.log 2>&1
 #jd_opencard29
@@ -90,6 +82,8 @@
 30 20 * * * node /scripts/jd_exchangejxbeans.js >> /scripts/logs/jd_exchangejxbeans.log 2>&1
 #京东小魔方--收集兑换
 31 8 * * * node /scripts/jd_mofang_ex.js >> /scripts/logs/jd_mofang_ex.log 2>&1
+# 京喜签到-喜豆
+10 2,9 * * * node /scripts/jx_sign_xd.js >> /scripts/logs/jx_sign_xd.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
