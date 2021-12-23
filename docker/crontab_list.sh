@@ -50,8 +50,6 @@
 24 0,12 * * * node /scripts/jd_sendBeans.js >> /scripts/logs/jd_sendBeans.log 2>&1
 #东东世界
 15 3,16 * * * node /scripts/jd_ddworld.js >> /scripts/logs/jd_ddworld.log 2>&1
-# 京东小魔方
-10 2,8 * * * node /scripts/jd_mf.js >> /scripts/logs/jd_mf.log 2>&1
 #芥么签到
 11 9,18 * * * node /scripts/jd_jmsign.js >> /scripts/logs/jd_jmsign.log 2>&1
 #芥么做任务
@@ -70,16 +68,18 @@
 24 3,13 * * * node /scripts/jd_superbox.js >> /scripts/logs/jd_superbox.log 2>&1
 # 发财挖宝
 20 1,9,16 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
-# 赚京豆(微信小程序)
-12 * * * * node /scripts/jd_syj.js >> /scripts/logs/jd_syj.log 2>&1
 #jd_opencard28
 35 2,8,17 10-25 12 * node /scripts/jd_opencard28.js >> /scripts/logs/jd_opencard28.log 2>&1
-#jd_opencard29
-35 1,7,16 10-21 12 * node /scripts/jd_opencard29.js >> /scripts/logs/jd_opencard29.log 2>&1
 #jd_opencard31
 45 0,6,15 * * * node /scripts/jd_opencard31.js >> /scripts/logs/jd_opencard31.log 2>&1
 #jd_opencard32
 25 3,9,20 * * * node /scripts/jd_opencard32.js >> /scripts/logs/jd_opencard32.log 2>&1
+#jd_opencard33
+35 1,7,16 10-30 12 * node /scripts/jd_opencard33.js >> /scripts/logs/jd_opencard33.log 2>&1
+#jd_opencard34
+45 2,8,17 * * * node /scripts/jd_opencard34.js >> /scripts/logs/jd_opencard34.log 2>&1
+#jd_opencard35
+45 4,10,20 * * * node /scripts/jd_opencard35.js >> /scripts/logs/jd_opencard35.log 2>&1
 #兑换7天过期喜豆
 30 20 * * * node /scripts/jd_exchangejxbeans.js >> /scripts/logs/jd_exchangejxbeans.log 2>&1
 #京东小魔方--收集兑换
