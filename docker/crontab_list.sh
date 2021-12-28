@@ -76,8 +76,6 @@
 35 1,7,16 10-30 12 * node /scripts/jd_opencard33.js >> /scripts/logs/jd_opencard33.log 2>&1
 #jd_opencard34
 45 2,8,17 * * * node /scripts/jd_opencard34.js >> /scripts/logs/jd_opencard34.log 2>&1
-#jd_opencard35
-45 4,10,20 * * * node /scripts/jd_opencard35.js >> /scripts/logs/jd_opencard35.log 2>&1
 #兑换7天过期喜豆
 30 20 * * * node /scripts/jd_exchangejxbeans.js >> /scripts/logs/jd_exchangejxbeans.log 2>&1
 #京东小魔方--收集兑换
