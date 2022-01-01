@@ -48,8 +48,6 @@
 1 0,11,21 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
 # 送豆得豆
 24 0,12 * * * node /scripts/jd_sendBeans.js >> /scripts/logs/jd_sendBeans.log 2>&1
-#东东世界
-15 3,16 * * * node /scripts/jd_ddworld.js >> /scripts/logs/jd_ddworld.log 2>&1
 #芥么签到
 11 9,18 * * * node /scripts/jd_jmsign.js >> /scripts/logs/jd_jmsign.log 2>&1
 #芥么做任务
@@ -72,8 +70,6 @@
 45 0,6,15 * * * node /scripts/jd_opencard31.js >> /scripts/logs/jd_opencard31.log 2>&1
 #jd_opencard32
 25 3,9,20 * * * node /scripts/jd_opencard32.js >> /scripts/logs/jd_opencard32.log 2>&1
-#jd_opencard33
-35 1,7,16 10-30 12 * node /scripts/jd_opencard33.js >> /scripts/logs/jd_opencard33.log 2>&1
 #jd_opencard34
 45 2,8,17 * * * node /scripts/jd_opencard34.js >> /scripts/logs/jd_opencard34.log 2>&1
 #兑换7天过期喜豆
