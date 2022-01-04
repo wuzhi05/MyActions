@@ -48,10 +48,6 @@
 1 0,11,21 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
 # 送豆得豆
 24 0,12 * * * node /scripts/jd_sendBeans.js >> /scripts/logs/jd_sendBeans.log 2>&1
-#芥么签到
-11 9,18 * * * node /scripts/jd_jmsign.js >> /scripts/logs/jd_jmsign.log 2>&1
-#芥么做任务
-15 9,18 * * * node /scripts/jd_jmtask.js >> /scripts/logs/jd_jmtask.log 2>&1
 #财富岛热气球接待
 30 * * * * node /scripts/jd_cfd_loop.js >> /scripts/logs/jd_cfd_loop.log 2>&1
 #jd_ddworld_exchange
