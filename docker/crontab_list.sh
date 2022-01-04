@@ -70,8 +70,6 @@
 45 0,6,15 * * * node /scripts/jd_opencard31.js >> /scripts/logs/jd_opencard31.log 2>&1
 #jd_opencard32
 25 3,9,20 * * * node /scripts/jd_opencard32.js >> /scripts/logs/jd_opencard32.log 2>&1
-#jd_opencard34
-45 2,8,17 * * * node /scripts/jd_opencard34.js >> /scripts/logs/jd_opencard34.log 2>&1
 #jd_opencard36
 45 1,7,15 * * * node /scripts/jd_opencard36.js >> /scripts/logs/jd_opencard36.log 2>&1
 #兑换7天过期喜豆
