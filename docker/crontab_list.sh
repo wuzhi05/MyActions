@@ -62,10 +62,6 @@
 24 3,13 * * * node /scripts/jd_superbox.js >> /scripts/logs/jd_superbox.log 2>&1
 # 发财挖宝
 20 1,9,16 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
-#jd_opencard31
-45 0,6,15 * * * node /scripts/jd_opencard31.js >> /scripts/logs/jd_opencard31.log 2>&1
-#jd_opencard32
-25 3,9,20 * * * node /scripts/jd_opencard32.js >> /scripts/logs/jd_opencard32.log 2>&1
 #jd_opencard36
 45 1,7,15 * * * node /scripts/jd_opencard36.js >> /scripts/logs/jd_opencard36.log 2>&1
 #兑换7天过期喜豆
