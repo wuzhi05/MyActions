@@ -62,8 +62,6 @@
 24 3,13 * * * node /scripts/jd_superbox.js >> /scripts/logs/jd_superbox.log 2>&1
 # 发财挖宝
 20 1,9,16 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
-#jd_opencard36
-45 1,7,15 * * * node /scripts/jd_opencard36.js >> /scripts/logs/jd_opencard36.log 2>&1
 #jd_opencard39
 45 2,8,18 * * * node /scripts/jd_opencard39.js >> /scripts/logs/jd_opencard39.log 2>&1
 #兑换7天过期喜豆
@@ -89,7 +87,10 @@
 # 天天压岁钱
 57 2 * * * node /scripts/jd_dayday_ysq.js >> /scripts/logs/jd_dayday_ysq.log 2>&1
 # 京享红包
-1 10,20,21 * * * node /scripts/jd_redEnvelope.js.js >> /scripts/logs/jd_redEnvelope.js.log 2>&1
+0 0,10,20,21 * * * node /scripts/jd_nhRedEnvelope.js.js >> /scripts/logs/jd_nhRedEnvelope.js.log 2>&1
+#炸年兽
+33 0,6-23/2 * * * node /scripts/jd_travel.js.js >> /scripts/logs/jd_travel.js.log 2>&1
+
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
