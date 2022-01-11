@@ -1,6 +1,4 @@
 /*
-TG https://t.me/aaron_scriptsG
-被内鬼偷给柠檬了,大家一起玩吧
 33 0,6-23/2 * * * jd_travel.js
 */
 const $ = new Env('炸年兽');
@@ -213,11 +211,11 @@ async function travel() {
                     teamPlayerAutoTeam[$.UserName] = n
                 }
             }
-            //if (puzzleFlag) {
-            //    console.log("\n去做做拼图任务")
-            //    const { doPuzzle } = require('./jd_travel_puzzle')
-            //    await doPuzzle($, cookie)
-            //}
+            // if (puzzleFlag) {
+            //     console.log("\n去做做拼图任务")
+            //     const { doPuzzle } = require('./jd_travel_puzzle')
+            //     await doPuzzle($, cookie)
+            // }
         }
     } catch (e) {
         console.log(e)
