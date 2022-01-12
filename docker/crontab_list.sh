@@ -88,8 +88,6 @@
 57 2 * * * node /scripts/jd_dayday_ysq.js >> /scripts/logs/jd_dayday_ysq.log 2>&1
 # 京享红包
 0 0,10,20,21 * * * node /scripts/jd_nhRedEnvelope.js.js >> /scripts/logs/jd_nhRedEnvelope.js.log 2>&1
-#炸年兽
-33 0,6-23/2 * * * node /scripts/jd_travel.js.js >> /scripts/logs/jd_travel.js.log 2>&1
 #jd_opencard94
 30 1 5-25/2,26 1 * node /scripts/jd_opencard94.js >> /scripts/logs/jd_opencard94.log 2>&1
 #jd_opencard95
