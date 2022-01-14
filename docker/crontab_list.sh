@@ -109,7 +109,9 @@
 #饭粒
 10 9 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
 #jd_opencard106
-30 4 14-21/3 1 * node /scripts/jd_opencard106.js >> /scripts/logs/jd_opencard106.log 2>&1
+30 6 14-21/3 1 * node /scripts/jd_opencard106.js >> /scripts/logs/jd_opencard106.log 2>&1
+#jd_opencard107
+30 0 14-21/3 1 * node /scripts/jd_opencard107.js >> /scripts/logs/jd_opencard107.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
