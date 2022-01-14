@@ -104,6 +104,10 @@
 10 3 * * * node /scripts/jd_mpdzcar_help.js >> /scripts/logs/jd_mpdzcar_help.log 2>&1
 #jd_opencard102
 30 3 13-20/3 1 * node /scripts/jd_opencard102.js >> /scripts/logs/jd_opencard102.log 2>&1
+#jd_opencard105
+30 4 6-20/3 1 * node /scripts/jd_opencard105.js >> /scripts/logs/jd_opencard105.log 2>&1
+#饭粒
+10 9 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
