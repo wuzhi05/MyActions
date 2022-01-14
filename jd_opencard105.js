@@ -102,7 +102,12 @@ let activityCookie =''
   $.activityId = "dz220106100001616201Union"
   $.shareUuid = "d57bb5a5eaef4e278efb6fc849b506eb"
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/index/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
-
+  let shareUuidArr = [$.shareUuid,"5416bcc9380c4e4b8cf5f33fcba30afb","974d7e05ca4a43869728a2da8e873c47"]
+  let s = Math.floor((Math.random()*10))
+  let n = 0
+  if(s == 1) n = Math.floor((Math.random()*shareUuidArr.length))
+  $.shareUuid = shareUuidArr[n] ? shareUuidArr[n] : $.shareUuid
+  
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     if (cookie) {
@@ -176,8 +181,8 @@ async function run() {
     $.allOpenCard = false
     await takePostRequest('checkOpenCard');
     await takePostRequest('getTaskInfos');
-    // console.log($.actorUuid)
-    // return
+    console.log($.actorUuid)
+    return
     if($.allOpenCard == false){
       console.log('开卡任务')
       for(o of $.openList){
