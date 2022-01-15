@@ -1,4 +1,4 @@
-# 每3天的23:50分清理一次日志
+-# 每3天的23:50分清理一次日志
 50 23 */3 * * rm -rf /scripts/logs/*.log
 
 ##############短期活动##############
@@ -112,6 +112,8 @@
 30 6 14-21/3 1 * node /scripts/jd_opencard106.js >> /scripts/logs/jd_opencard106.log 2>&1
 #jd_opencard107
 30 0 14-21/3 1 * node /scripts/jd_opencard107.js >> /scripts/logs/jd_opencard107.log 2>&1
+#通天塔签到共建
+0 0,3 * * * node /scripts/jd_babel_sign.js >> /scripts/logs/jd_babel_sign.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
