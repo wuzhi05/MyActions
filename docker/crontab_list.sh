@@ -85,7 +85,7 @@
 # 天天压岁钱
 57 2 * * * node /scripts/jd_dayday_ysq.js >> /scripts/logs/jd_dayday_ysq.log 2>&1
 # 京享红包
-0 0,10,20,21 * * * node /scripts/jd_nhRedEnvelope.js.js >> /scripts/logs/jd_nhRedEnvelope.js.log 2>&1
+0 0,10,20,22 * * * node /scripts/jd_nhjRed.js.js >> /scripts/logs/jd_nhjRed.js.log 2>&1
 #jd_opencard94
 30 1 5-25/2,26 1 * node /scripts/jd_opencard94.js >> /scripts/logs/jd_opencard94.log 2>&1
 #jd_opencard95
@@ -94,8 +94,6 @@
 30 2 28,7-28/3 1 * node /scripts/jd_opencard97.js >> /scripts/logs/jd_opencard97.log 2>&1
 #jd_opencard98
 30 10 27,7-27/3 1 * node /scripts/jd_opencard98.js >> /scripts/logs/jd_opencard98.log 2>&1
-#jd_opencard100
-30 3 9-15/3 1 * node /scripts/jd_opencard100.js >> /scripts/logs/jd_opencard100.log 2>&1
 #jd_opencard101
 30 2 27,9-26/3 1 * node /scripts/jd_opencard101.js >> /scripts/logs/jd_opencard101.log 2>&1
 #头文字J
