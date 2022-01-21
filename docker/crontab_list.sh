@@ -100,16 +100,8 @@
 10 6,10,12 * * * node /scripts/jd_mpdzcar_game.js >> /scripts/logs/jd_mpdzcar_game.log 2>&1
 #头文字J 助力
 10 3 * * * node /scripts/jd_mpdzcar_help.js >> /scripts/logs/jd_mpdzcar_help.log 2>&1
-#jd_opencard102
-30 3 13-20/3 1 * node /scripts/jd_opencard102.js >> /scripts/logs/jd_opencard102.log 2>&1
-#jd_opencard105
-30 4 6-20/3 1 * node /scripts/jd_opencard105.js >> /scripts/logs/jd_opencard105.log 2>&1
 #饭粒
 10 9 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
-#jd_opencard106
-30 6 14-21/3 1 * node /scripts/jd_opencard106.js >> /scripts/logs/jd_opencard106.log 2>&1
-#jd_opencard107
-30 0 14-21/3 1 * node /scripts/jd_opencard107.js >> /scripts/logs/jd_opencard107.log 2>&1
 #通天塔签到共建
 0 0,3 * * * node /scripts/jd_babel_sign.js >> /scripts/logs/jd_babel_sign.log 2>&1
 ##############长期活动##############
