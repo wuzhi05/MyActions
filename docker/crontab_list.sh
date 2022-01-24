@@ -108,6 +108,8 @@
 30 4 21-27/3 1 * node /scripts/jd_opencard111.js >> /scripts/logs/jd_opencard111.log 2>&1
 #jd_opencard112
 30 5 1-15/3,17-31/3 1,2 * node /scripts/jd_opencard112.js >> /scripts/logs/jd_opencard112.log 2>&1
+#小魔方
+20 4,19 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
