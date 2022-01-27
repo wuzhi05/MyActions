@@ -82,8 +82,6 @@
 57 2 * * * node /scripts/jd_dayday_ysq.js >> /scripts/logs/jd_dayday_ysq.log 2>&1
 #jd_opencard95
 30 2 1,11-31/3 1,2 * node /scripts/jd_opencard95.js >> /scripts/logs/jd_opencard95.log 2>&1
-#jd_opencard97
-30 2 28,7-28/3 1 * node /scripts/jd_opencard97.js >> /scripts/logs/jd_opencard97.log 2>&1
 #头文字J
 10 6,10,12 * * * node /scripts/jd_mpdzcar_game.js >> /scripts/logs/jd_mpdzcar_game.log 2>&1
 #头文字J 助力
@@ -96,8 +94,6 @@
 30 3 20-29/3 1 * node /scripts/jd_opencard109.js >> /scripts/logs/jd_opencard109.log 2>&1
 #jd_opencard110
 30 2 19-28/3 1 * node /scripts/jd_opencard110.js >> /scripts/logs/jd_opencard110.log 2>&1
-#jd_opencard111
-30 4 21-27/3 1 * node /scripts/jd_opencard111.js >> /scripts/logs/jd_opencard111.log 2>&1
 #jd_opencard112
 30 5 1-15/3,17-31/3 1,2 * node /scripts/jd_opencard112.js >> /scripts/logs/jd_opencard112.log 2>&1
 #小魔方
