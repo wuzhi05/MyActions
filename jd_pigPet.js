@@ -28,7 +28,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let UA = $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
-let shareId = '10g5qikDOe8jDybN7sipecAdoUJQ3Dik'
+let shareId = 'G4LFeVIWco3B7fKz2T7AEg'
 let isLoginInfo = {};
 $.shareCodes = [];
 
@@ -191,18 +191,13 @@ function pigPetUserBag() {
                     console.log(`${item.goodsName}        ${item.count}g`);
                   }
                   for (let item of data.resultData.resultData.goods) {
-                    if (item.count >= 20) {
-                      let i = 50
-                      console.log(`\n每次运行最多喂食50次`)
-                      do {
-                        console.log(`\n10秒后开始喂食${item.goodsName}，当前数量为${item.count}g`)
-                        await $.wait(10000);
-                        await pigPetAddFood(item.sku);
-                        if ($.finish) break
-                        item.count = item.count - 20
-                        i--
-                      } while (item.count >= 20 && i > 0)
-                      if ($.finish) break
+                    $.remain = item.count
+                    for (let i = 1; i < item.count/20 ; i++) {
+                      console.log(`10秒后开始喂食${item.goodsName}，当前数量为${$.remain}g`)
+                      $.remain -= 20
+                      await $.wait(10000);
+                      await pigPetAddFood(item.sku);
+                      if ($.result == 90) break;
                     }
                   }
                 } else {
@@ -874,7 +869,7 @@ function finishReadMission(missionId, readTime) {
 function getAuthorShareCode(url) {
   return new Promise(async resolve => {
     const options = {
-      url: `${url}?${new Date()}`, "timeout": 10000, headers: {
+      url: `${url}`, "timeout": 10000, headers: {
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }
     };
