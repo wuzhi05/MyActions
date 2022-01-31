@@ -90,10 +90,6 @@
 10 9 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
 #通天塔签到共建
 0 0,3 * * * node /scripts/jd_babel_sign.js >> /scripts/logs/jd_babel_sign.log 2>&1
-#jd_opencard109
-30 3 20-29/3 1 * node /scripts/jd_opencard109.js >> /scripts/logs/jd_opencard109.log 2>&1
-#jd_opencard110
-30 2 19-28/3 1 * node /scripts/jd_opencard110.js >> /scripts/logs/jd_opencard110.log 2>&1
 #jd_opencard112
 30 5 1-15/3,17-31/3 1,2 * node /scripts/jd_opencard112.js >> /scripts/logs/jd_opencard112.log 2>&1
 #小魔方
