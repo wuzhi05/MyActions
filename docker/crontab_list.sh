@@ -50,8 +50,6 @@
 24 0,12 * * * node /scripts/jd_sendBeans.js >> /scripts/logs/jd_sendBeans.log 2>&1
 #财富岛热气球接待
 30 * * * * node /scripts/jd_cfd_loop.js >> /scripts/logs/jd_cfd_loop.log 2>&1
-#jd_ddworld_exchange
-0 0,9 * * * node /scripts/jd_ddworld_exchangebean.js >> /scripts/logs/jd_ddworld_exchangebean.log 2>&1
 # 推一推
 20 3,13 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 # 签到免单
@@ -94,8 +92,6 @@
 30 5 1-15/3,17-31/3 1,2 * node /scripts/jd_opencard112.js >> /scripts/logs/jd_opencard112.log 2>&1
 #小魔方
 20 4,19 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
-# 京喜领88元红包
-30 1,6,12,21 * * * node /scripts/jd_jxlhb.js >> /scripts/logs/jd_jxlhb.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
