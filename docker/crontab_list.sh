@@ -80,10 +80,6 @@
 57 2 * * * node /scripts/jd_dayday_ysq.js >> /scripts/logs/jd_dayday_ysq.log 2>&1
 #jd_opencard95
 30 2 1,11-31/3 1,2 * node /scripts/jd_opencard95.js >> /scripts/logs/jd_opencard95.log 2>&1
-#头文字J
-10 6,10,12 * * * node /scripts/jd_mpdzcar_game.js >> /scripts/logs/jd_mpdzcar_game.log 2>&1
-#头文字J 助力
-10 3 * * * node /scripts/jd_mpdzcar_help.js >> /scripts/logs/jd_mpdzcar_help.log 2>&1
 #饭粒
 10 9 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
 #通天塔签到共建
@@ -92,6 +88,8 @@
 30 5 1-15/3,17-31/3 1,2 * node /scripts/jd_opencard112.js >> /scripts/logs/jd_opencard112.log 2>&1
 #小魔方
 20 4,19 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
+#jd_opencardL67
+35 15 * * * node /scripts/jd_opencardL67.js >> /scripts/logs/jd_opencardL67.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
