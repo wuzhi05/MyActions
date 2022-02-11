@@ -82,6 +82,9 @@
 20 4,19 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 #jd_opencardL67
 35 15 * * * node /scripts/jd_opencardL67.js >> /scripts/logs/jd_opencardL67.log 2>&1
+#jd_xfxd
+18 0 * * * node /scripts/jd_xfxd.js >> /scripts/logs/jd_xfxd.log 2>&1
+
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
