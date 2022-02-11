@@ -82,8 +82,8 @@
 20 4,19 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 #jd_opencardL67
 35 15 * * * node /scripts/jd_opencardL67.js >> /scripts/logs/jd_opencardL67.log 2>&1
-#jd_xfxd
-18 0 * * * node /scripts/jd_xfxd.js >> /scripts/logs/jd_xfxd.log 2>&1
+#jd_xfxd_new
+18 0 * * * node /scripts/jd_xfxd_new.js >> /scripts/logs/jd_xfxd_new.log 2>&1
 #jd_opencard113
 30 1 23,11-22/3 2 * node /scripts/jd_opencard113.js >> /scripts/logs/jd_opencard113.log 2>&1
 
