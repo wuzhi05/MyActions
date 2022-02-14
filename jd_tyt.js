@@ -39,6 +39,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
     $.http.get({url: 'https://purge.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/tyt.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
     await $.wait(1000)
     res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/tyt.json')
+    
   }
   $.shareCodes = [...new Set([...(res || []),...$.shareCodes])];
   for (let i = 0; i < cookiesArr.length; i++) {

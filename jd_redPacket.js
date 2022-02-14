@@ -48,7 +48,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
       res = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/wuzhi05/updateTeam/master/shareCodes/jd_red.json')
     }
   }
-  $.authorMyShareIds = [...(res || [])];
+  $.authorMyShareIds = [...(res.code || [])];
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
