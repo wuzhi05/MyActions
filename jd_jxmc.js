@@ -80,8 +80,13 @@ if ($.isNode()) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
     return;
   }
-  let res = await getAuthorShareCode('https://wuzhi03.coding.net/p/dj/d/shareCodes/git/raw/main/jxmc.json')
-  $.codeList = [];
+  res = await getAuthorShareCode('https://raw.githubusercontent.com/wuzhi05/updateTeam/master/shareCodes/jxmc.json')
+  if (!res) {
+    $.http.get({url: 'https://purge.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jxmc.json'}).then((resp) => {}).catch((e) => console.log('刷新CDN异常', e));
+    await $.wait(1000)
+    res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jxmc.json')
+  }
+  $.codeList = [...(res || [])];
   console.log('京喜牧场\n' +
     '更新时间：2021-10-30\n' +
     '活动入口：京喜APP-我的-京喜牧场\n' +
@@ -146,7 +151,7 @@ if ($.isNode()) {
         if($.codeList[k].name === $.UserName){
           continue;
         } else {
-          console.log(`\n${$.UserName}去助力${$.codeList[k].name},助力码：${$.codeList[k].code}`);
+          console.log(`\n${$.UserName}去助力${$.codeList[k].name},助力码：${$.codeList[k].code}\n`);
           await takeGetRequest('help');
           await $.wait(2000);
         }

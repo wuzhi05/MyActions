@@ -46,7 +46,12 @@ if ($.isNode()) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
     return;
   }
-  let res = await getAuthorShareCode('https://wuzhi03.coding.net/p/dj/d/shareCodes/git/raw/main/pigPet.json')
+  let res = await getAuthorShareCode('https://raw.githubusercontent.com/wuzhi05/updateTeam/master/shareCodes/pigPet.json')
+  if (!res) {
+  $.http.get({url: 'https://purge.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/pigPet.json'}).then((resp) => {}).catch((e) => console.log('刷新CDN异常', e));
+  await $.wait(1000)
+  res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/pigPet.json')
+  }
   $.shareCodes = [...(res || [])]
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -869,7 +874,7 @@ function finishReadMission(missionId, readTime) {
 function getAuthorShareCode(url) {
   return new Promise(async resolve => {
     const options = {
-      url: `${url}`, "timeout": 10000, headers: {
+      url: `${url}?${new Date()}`, "timeout": 10000, headers: {
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }
     };

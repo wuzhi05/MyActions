@@ -84,7 +84,12 @@ if ($.isNode()) {
       await $.wait(2000);
     }
   }
-  let res = await getAuthorShareCode('https://wuzhi03.coding.net/p/dj/d/shareCodes/git/raw/main/jd_cfd.json')
+  let res = await getAuthorShareCode('https://raw.githubusercontent.com/wuzhi05/updateTeam/master/shareCodes/jd_cfd.json')
+  if (!res) {
+    $.http.get({url: 'https://purge.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jd_cfd.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
+    await $.wait(1000)
+    res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jd_cfd.json')
+  }
   $.strMyShareIds = [...(res && res.shareId || [])]
   await shareCodesFormat()
   for (let i = 0; i < cookiesArr.length; i++) {
