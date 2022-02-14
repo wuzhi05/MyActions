@@ -43,6 +43,10 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.http.get({url: 'https://purge.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jd_red.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
     await $.wait(1000)
     res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jd_red.json')
+    await $.wait(1000)
+    if (!res) {
+      res = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/wuzhi05/updateTeam/master/shareCodes/jd_red.json')
+    }
   }
   $.authorMyShareIds = [...(res || [])];
   for (let i = 0; i < cookiesArr.length; i++) {
@@ -74,20 +78,6 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.canHelp = true;
     $.redPacketId = [...new Set($.redPacketId)];
     if ($.canHelp && ($.authorMyShareIds && $.authorMyShareIds.length)) {
-      console.log(`\n\n作者进行助力`);
-      for (let j = 0; j < $.authorMyShareIds.length && $.canHelp; j++) {
-        console.log(`\n账号 ${$.index} ${$.UserName} 开始给作者 ${$.authorMyShareIds[j]} 进行助力`)
-        $.max = false;
-        await jinli_h5assist($.authorMyShareIds[j]);
-        await $.wait(2000)
-        if ($.max) {
-          $.authorMyShareIds.splice(j, 1)
-          j--
-          continue
-        }
-      }
-    }
-    if (cookiesArr && cookiesArr.length >= 2) {
       console.log(`\n\n自己账号内部互助`);
       for (let j = 0; j < $.redPacketId.length && $.canHelp; j++) {
         console.log(`账号 ${$.index} ${$.UserName} 开始给 ${$.redPacketId[j]} 进行助力`)
@@ -96,6 +86,20 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         await $.wait(2000)
         if ($.max) {
           $.redPacketId.splice(j, 1)
+          j--
+          continue
+        }
+      }
+    }
+    if (cookiesArr && cookiesArr.length >= 2) {
+      console.log(`\n\n作者进行助力`);
+      for (let j = 0; j < $.authorMyShareIds.length && $.canHelp; j++) {
+        console.log(`\n账号 ${$.index} ${$.UserName} 开始给作者 ${$.authorMyShareIds[j]} 进行助力`)
+        $.max = false;
+        await jinli_h5assist($.authorMyShareIds[j]);
+        await $.wait(2000)
+        if ($.max) {
+          $.authorMyShareIds.splice(j, 1)
           j--
           continue
         }
