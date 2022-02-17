@@ -70,8 +70,6 @@
 15 10 * * * node /scripts/jd_jfcz.js >> /scripts/logs/jd_jfcz.log 2>&1
 # 特务z
 23 11,20 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
-# 天天压岁钱
-57 2 * * * node /scripts/jd_dayday_ysq.js >> /scripts/logs/jd_dayday_ysq.log 2>&1
 #饭粒
 10 9 * * * node /scripts/jd_fanli.js >> /scripts/logs/jd_fanli.log 2>&1
 #通天塔签到共建
