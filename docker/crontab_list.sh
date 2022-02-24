@@ -80,7 +80,8 @@
 18 0 * * * node /scripts/jd_xfxd_new.js >> /scripts/logs/jd_xfxd_new.log 2>&1
 #jd_opencard114
 30 1 19-26/3 2 * node /scripts/jd_opencard114.js >> /scripts/logs/jd_opencard114.log 2>&1
-
+#jd_opencard115
+30 6,18 21-28 2 * node /scripts/jd_opencard115.js >> /scripts/logs/jd_opencard115.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1

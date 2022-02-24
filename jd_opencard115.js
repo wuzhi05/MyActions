@@ -1,62 +1,17 @@
 /*
-2.19～2.26 奢宠会员 瓜分百万京豆 [gua_opencard114.js]
-新增开卡脚本
-一次性脚本
-
-1.邀请一人20豆
-2.开10张卡 成功开1张 有机会获得10豆
-3.加购5京豆
-  (默认不加购 如需加购请设置环境变量[guaopencard_addSku114]为"true"
-4.抽奖 (默认不抽奖 如需抽奖请设置环境变量[guaopencard_draw114]为"3"
-填写要抽奖的次数 不足已自身次数为准
-guaopencard_draw114="3"
-填非数字会全都抽奖
-
-第一个账号助力作者 其他依次助力CK1
-第一个CK失效会退出脚本
-
-默认脚本不执行
-如需执行脚本请设置环境变量
-guaopencard114="true"
-每个账号之间延迟 100=延迟100秒 0=延迟0秒会使用每3个账号延迟60秒
-guaopenwait_All 所有
-guaopenwait114="0"
-
-
-All变量适用
+2.21-2.28 大牌联合 宠爱有礼
+新增开卡脚本,一次性脚本
 ————————————————
-入口：[ 2.19～2.26 奢宠会员 瓜分百万京豆 (https://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=unionkbblnt20220218dzlhkk&shareUuid=cfa3d62fa8ae4ee780b86e6a1277e5a8)]
-
-请求太频繁会被黑ip
-过10分钟再执行
-
-cron:30 1 19-26/3 2 *
+入口：[ 2.21-2.28 大牌联合 宠爱有礼 (https://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=unionkbblnt20220221dzlhkk&shareUuid=1e1c83189fb34c13afbdd37943241c17)]
+cron:30 6,18 21-28 2 *
 ============Quantumultx===============
 [task_local]
-#2.19～2.26 奢宠会员 瓜分百万京豆
-30 1 19-26/3 2 * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_opencard114.js, tag=2.19～2.26 奢宠会员 瓜分百万京豆, enabled=true
-
+#2.21-2.28 大牌联合 宠爱有礼
+30 6,18 21-28 2 * jd_opencardL80.js, tag=2.21-2.28 大牌联合 宠爱有礼, enabled=true
 */
-let guaopencard_addSku = "false"
-let guaopencard = "true"
-let guaopenwait = "0"
-let guaopencard_draw = "0"
-
-const $ = new Env('2.19～2.26 奢宠会员 瓜分百万京豆');
+const $ = new Env('2.21-2.28 大牌联合 宠爱有礼');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
-let cleanCart = ''
-if($.isNode()){
-  try{
-    const fs = require('fs');
-    if (fs.existsSync('./cleancart_activity.js')) {
-      cleanCart = require('./cleancart_activity');
-    }
-  }catch(e){
-  }
-}
-//IOS等用户直接用NobyDa的jd cookie
-
 let cookiesArr = [],
     cookie = '';
 if ($.isNode()) {
@@ -67,16 +22,6 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-
-guaopencard_addSku = $.isNode() ? (process.env.guaopencard_addSku114 ? process.env.guaopencard_addSku114 : `${guaopencard_addSku}`) : ($.getdata('guaopencard_addSku114') ? $.getdata('guaopencard_addSku114') : `${guaopencard_addSku}`);
-guaopencard_addSku = $.isNode() ? (process.env.guaopencard_addSku_All ? process.env.guaopencard_addSku_All : `${guaopencard_addSku}`) : ($.getdata('guaopencard_addSku_All') ? $.getdata('guaopencard_addSku_All') : `${guaopencard_addSku}`);
-guaopencard = $.isNode() ? (process.env.guaopencard114 ? process.env.guaopencard114 : `${guaopencard}`) : ($.getdata('guaopencard114') ? $.getdata('guaopencard114') : `${guaopencard}`);
-guaopencard = $.isNode() ? (process.env.guaopencard_All ? process.env.guaopencard_All : `${guaopencard}`) : ($.getdata('guaopencard_All') ? $.getdata('guaopencard_All') : `${guaopencard}`);
-guaopenwait = $.isNode() ? (process.env.guaopenwait114 ? process.env.guaopenwait114 : `${guaopenwait}`) : ($.getdata('guaopenwait114') ? $.getdata('guaopenwait114') : `${guaopenwait}`);
-guaopenwait = $.isNode() ? (process.env.guaopenwait_All ? process.env.guaopenwait_All : `${guaopenwait}`) : ($.getdata('guaopenwait_All') ? $.getdata('guaopenwait_All') : `${guaopenwait}`);
-guaopenwait = parseInt(guaopenwait, 10) || 0
-guaopencard_draw = $.isNode() ? (process.env.guaopencard_draw114 ? process.env.guaopencard_draw114 : guaopencard_draw) : ($.getdata('guaopencard_draw114') ? $.getdata('guaopencard_draw114') : guaopencard_draw);
-guaopencard_draw = $.isNode() ? (process.env.guaopencard_draw ? process.env.guaopencard_draw : guaopencard_draw) : ($.getdata('guaopencard_draw') ? $.getdata('guaopencard_draw') : guaopencard_draw);
 allMessage = ""
 message = ""
 $.hotFlag = false
@@ -85,24 +30,15 @@ $.activityEnd = false
 let lz_jdpin_token_cookie =''
 let activityCookie =''
 !(async () => {
-  if ($.isNode()) {
-    if(guaopencard+"" != "true"){
-      console.log('如需执行脚本请设置环境变量[guaopencard114]为"true"')
-    }
-    if(guaopencard+"" != "true"){
-      return
-    }
-  }
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
       "open-url": "https://bean.m.jd.com/"
     });
     return;
   }
-  $.activityId = "unionkbblnt20220218dzlhkk"
-  $.shareUuid = "c50ed1c962fa4f889f0ebfe612bae8bf"
+  $.activityId = "unionkbblnt20220221dzlhkk"
+  $.shareUuid = "1371bbd7a4364557a9e171bbaeafd4d6"
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
-
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     if (cookie) {
@@ -120,7 +56,6 @@ let activityCookie =''
   if($.outFlag) {
     let msg = '此ip已被限制，请过10分钟后再执行脚本'
     $.msg($.name, ``, `${msg}`);
-    if ($.isNode()) await notify.sendNotify(`${$.name}`, `${msg}`);
   }
 })()
     .catch((e) => $.logErr(e))
@@ -177,8 +112,6 @@ async function run() {
     $.allOpenCard = false
     await takePostRequest('info');
     await takePostRequest('checkOpenCard');
-    // console.log($.actorUuid)
-    // return
     if($.allOpenCard == false){
       console.log('开卡任务')
       for(o of $.openList){
@@ -197,7 +130,7 @@ async function run() {
     }else{
       console.log('已全部开卡')
     }
-    
+
     $.log("关注: " + $.followShop)
     if(!$.followShop && !$.outFlag){
       flag = true
@@ -212,32 +145,16 @@ async function run() {
     }
     $.log("加购: " + $.addCart)
     if(!$.addCart && !$.outFlag){
-      if(guaopencard_addSku+"" == "true"){
         flag = true
         let goodsArr = []
-        if(cleanCart){
-          goodsArr = await cleanCart.clean(cookie,'https://jd.smiek.tk/jdcleancatr_21102717','')
-          await $.wait(parseInt(Math.random() * 1000 + 4000, 10))
-        }
         await takePostRequest('addCart');
         await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
-        if(cleanCart && goodsArr !== false){
-          // await $.wait(parseInt(Math.random() * 1000 + 4000, 10))
-          await cleanCart.clean(cookie,'https://jd.smiek.tk/jdcleancatr_21102717',goodsArr || [ ])
-        }
-      }else{
-        console.log('如需加购请设置环境变量[guaopencard_addSku114]为"true"');
-      }
     }
     if(flag){
       await takePostRequest('activityContent');
     }
-    console.log(`${$.score}值`)
-    if(guaopencard_draw+"" !== "0"){
       $.runFalag = true
       let count = parseInt($.score/100)
-      guaopencard_draw = parseInt(guaopencard_draw, 10)
-      if(count > guaopencard_draw) count = guaopencard_draw
       console.log(`抽奖次数为:${count}`)
       for(m=1;count--;m++){
         console.log(`第${m}次抽奖`)
@@ -250,8 +167,7 @@ async function run() {
         }
         await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
       }
-    }else console.log('如需抽奖请设置环境变量[guaopencard_draw114]为"3" 3为次数');
-    
+
     await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
     await takePostRequest('getDrawRecordHasCoupon');
     await takePostRequest('getShareRecord');
@@ -261,15 +177,9 @@ async function run() {
     }
     await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
     if(flag) await $.wait(parseInt(Math.random() * 1000 + 10000, 10))
-    if(guaopenwait){
-      if($.index != cookiesArr.length){
-        console.log(`等待${guaopenwait}秒`)
-        await $.wait(parseInt(guaopenwait, 10) * 1000)
-      }
-    }else{
+
       if($.index % 3 == 0) console.log('休息1分钟，别被黑ip了\n可持续发展')
       if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 60000, 10))
-    }
   } catch (e) {
     console.log(e)
   }
@@ -408,7 +318,7 @@ async function takePostRequest(type) {
       })
     })
   }
-  
+
 async function dealReturn(type, data) {
   let res = ''
   try {
@@ -622,7 +532,7 @@ async function dealReturn(type, data) {
         if(typeof res == 'object'){
           if(res.result && res.result === true && res.data){
             $.ShareCount = res.data.shareList.length
-            $.log(`=========== 你邀请了:${res.data.shareList.length}个\n由于接口数据只有30个 故邀请大于30个的需要自行判断\n`)
+            $.log(`=========== 你邀请了:${res.data.shareList.length}个\n`)
           }else if(res.errorMessage){
             console.log(`${type} ${res.errorMessage || ''}`)
           }else{
