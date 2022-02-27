@@ -43,10 +43,6 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     $.http.get({url: 'https://purge.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jd_red.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
     await $.wait(1000)
     res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/wuzhi05/updateTeam@master/shareCodes/jd_red.json')
-    await $.wait(1000)
-    if (!res) {
-      res = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/wuzhi05/updateTeam/master/shareCodes/jd_red.json')
-    }
   }
   $.authorMyShareIds = [...(res.code || [])];
   for (let i = 0; i < cookiesArr.length; i++) {
