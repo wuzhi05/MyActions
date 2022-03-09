@@ -78,24 +78,10 @@
 20 4,19 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 #jd_xfxd_new
 18 0 * * * node /scripts/jd_xfxd_new.js >> /scripts/logs/jd_xfxd_new.log 2>&1
-#jd_opencardL84
-31 1,14 1-8 3 * node /scripts/jd_opencardL84.js >> /scripts/logs/jd_opencardL84.log 2>&1
 #jd_opencardL86
 30 10,18 1-15 3 * node /scripts/jd_opencardL86.js >> /scripts/logs/jd_opencardL86.log 2>&1
-#jd_opencardL87
-30 1,14 1-8 3 * node /scripts/jd_opencardL87.js >> /scripts/logs/jd_opencardL87.log 2>&1
-#jd_opencardL88
-31 4,13 1-8 3 * node /scripts/jd_opencardL88.js >> /scripts/logs/jd_opencardL88.log 2>&1
 #jd_opencard115
 30 2 19,3-18/3 3 * node /scripts/jd_opencard115.js >> /scripts/logs/jd_opencard115.log 2>&1
-#jd_15_5
-58 59 6,9,14,17,20 * * * node /scripts/jd_15_5.js >> /scripts/logs/jd_15_5.log 2>&1
-#jd_29_8
-58 59 8,11,14,16,19 * * * node /scripts/jd_29_8.js >> /scripts/logs/jd_29_8.log 2>&1
-#jd_5_2
-58 59 6,9,14,17,20 * * * node /scripts/jd_5_2.js >> /scripts/logs/jd_5_2.log 2>&1
-#jd_10_4
-58 59 7,10,13,15,19 * * * node /scripts/jd_10_4.js >> /scripts/logs/jd_10_4.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
