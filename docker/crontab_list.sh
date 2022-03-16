@@ -78,10 +78,12 @@
 20 4,19 * * * node /scripts/jd_xmf.js >> /scripts/logs/jd_xmf.log 2>&1
 #jd_xfxd_new
 18 0 * * * node /scripts/jd_xfxd_new.js >> /scripts/logs/jd_xfxd_new.log 2>&1
-#jd_opencardL86
-30 10,18 1-15 3 * node /scripts/jd_opencardL86.js >> /scripts/logs/jd_opencardL86.log 2>&1
 #jd_opencard115
 30 2 19,3-18/3 3 * node /scripts/jd_opencard115.js >> /scripts/logs/jd_opencard115.log 2>&1
+#jd_opencard117
+30 4,22 1-19 3 * node /scripts/jd_opencard117.js >> /scripts/logs/jd_opencard117.log 2>&1
+#jd_opencard118
+30 5,23 1-19 3 * node /scripts/jd_opencard118.js >> /scripts/logs/jd_opencard118.log 2>&1
 #jd_ddworld_exchangebean
 0 0,9 * * * node /scripts/jd_ddworld_exchangebean.js >> /scripts/logs/jd_ddworld_exchangebean.log 2>&1
 ##############长期活动##############
