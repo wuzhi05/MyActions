@@ -26,7 +26,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '', message;
-const linkIdArr = ["7ya6o83WSbNhrbYJqsMfFA"];
+const linkIdArr = ["Eu7-E0CUzqYyhZJo9d3YkQ"];
 const signLinkId = '9WA12jYGulArzWS7vcrwhw';
 let linkId;
 if ($.isNode()) {
@@ -80,14 +80,14 @@ if ($.isNode()) {
 async function jsRedPacket() {
   try {
     await invite();
-    // await sign();//极速版签到提现
-    // await reward_query();
-    // for (let i = 0; i < 3; ++i) {
-    //   await redPacket();//开红包
-    //   await $.wait(500)
-    // }
-    // await getPacketList();//领红包提现
-    // await signPrizeDetailList();
+    await sign();//极速版签到提现
+    await reward_query();
+    for (let i = 0; i < 3; ++i) {
+      await redPacket();//开红包
+      await $.wait(500)
+    }
+    await getPacketList();//领红包提现
+    await signPrizeDetailList();
     await showMsg()
   } catch (e) {
     $.logErr(e)

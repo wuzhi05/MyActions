@@ -82,8 +82,8 @@
 30 2 19,3-18/3 3 * node /scripts/jd_opencard115.js >> /scripts/logs/jd_opencard115.log 2>&1
 #jd_opencard117
 30 4,22 1-19 3 * node /scripts/jd_opencard117.js >> /scripts/logs/jd_opencard117.log 2>&1
-#jd_opencard118
-30 5,23 1-19 3 * node /scripts/jd_opencard118.js >> /scripts/logs/jd_opencard118.log 2>&1
+#jd_opencard119
+10 1,23 17-25/3 3 * node /scripts/jd_opencard119.js >> /scripts/logs/jd_opencard119.log 2>&1
 #jd_ddworld_exchangebean
 0 0,9 * * * node /scripts/jd_ddworld_exchangebean.js >> /scripts/logs/jd_ddworld_exchangebean.log 2>&1
 ##############长期活动##############

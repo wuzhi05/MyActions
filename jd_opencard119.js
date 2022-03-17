@@ -1,43 +1,60 @@
 /*
-海蓝之谜邀请入会有礼 [c.js]
+3.17~3.25 大牌联合 好物焕新季 [gua_opencard119.js]
 新增开卡脚本
 一次性脚本
 
-1.每邀请满3人50豆
-2.开1张卡
-3.已开卡的不算有效人数
+1.邀请一人20豆
+2.开14张卡 成功开1张 有机会获得10豆
+3.加购5京豆
+  (默认不加购 如需加购请设置环境变量[guaopencard_addSku119]为"true"
+4.抽奖 (默认不抽奖 如需抽奖请设置环境变量[guaopencard_draw119]为"3"
+填写要抽奖的次数 不足已自身次数为准
+guaopencard_draw119="3"
+填非数字会全都抽奖
 
 第一个账号助力作者 其他依次助力CK1
 第一个CK失效会退出脚本
 
 默认脚本不执行
 如需执行脚本请设置环境变量
-guaopencard118="true"
+guaopencard119="true"
 每个账号之间延迟 100=延迟100秒 0=延迟0秒会使用每3个账号延迟60秒
 guaopenwait_All 所有
-guaopenwait118="0"
+guaopenwait119="0"
 
 
 All变量适用
 ————————————————
-入口：[ 海蓝之谜邀请入会有礼 (https://lzkjdz-isv.isvjcloud.com/m/1000410747/99/2203100041074702/?helpUuid=76f9a4f1df2e42fd98c05997c0c9bc7d)]
+入口：[ 3.17~3.25 大牌联合 好物焕新季 (https://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=dzlhkk068d4d0ab8a6609723002f50&shareUuid=3720d1ba86dd405fa87463dc5dd966ff)]
 
 请求太频繁会被黑ip
 过10分钟再执行
-
-cron:30 1 16-31/3 3 *
+  
+cron:30 1 17-25/3 3 *
 ============Quantumultx===============
 [task_local]
-#海蓝之谜邀请入会有礼
-30 1 16-31/3 3 * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_opencard118.js, tag=海蓝之谜邀请入会有礼, enabled=true
+#3.17~3.25 大牌联合 好物焕新季
+30 1 17-25/3 3 * https://raw.githubusercontent.com/smiek2121/scripts/master/gua_opencard119.js, tag=3.17~3.25 大牌联合 好物焕新季, enabled=true
 
 */
+let guaopencard_addSku = "false"
 let guaopencard = "true"
-let guaopenwait = "30"
+let guaopenwait = "10"
+let guaopencard_draw = "0"
 
-const $ = new Env('海蓝之谜邀请入会有礼');
+const $ = new Env('3.17~3.25 大牌联合 好物焕新季');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
+let cleanCart = ''
+if($.isNode()){
+  try{
+    const fs = require('fs');
+    if (fs.existsSync('./cleancart_activity.js')) {
+      cleanCart = require('./cleancart_activity');
+    }
+  }catch(e){
+  }
+}
 //IOS等用户直接用NobyDa的jd cookie
 
 let cookiesArr = [],
@@ -51,11 +68,15 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 
-guaopencard = $.isNode() ? (process.env.guaopencard118 ? process.env.guaopencard118 : `${guaopencard}`) : ($.getdata('guaopencard118') ? $.getdata('guaopencard118') : `${guaopencard}`);
+guaopencard_addSku = $.isNode() ? (process.env.guaopencard_addSku119 ? process.env.guaopencard_addSku119 : `${guaopencard_addSku}`) : ($.getdata('guaopencard_addSku119') ? $.getdata('guaopencard_addSku119') : `${guaopencard_addSku}`);
+guaopencard_addSku = $.isNode() ? (process.env.guaopencard_addSku_All ? process.env.guaopencard_addSku_All : `${guaopencard_addSku}`) : ($.getdata('guaopencard_addSku_All') ? $.getdata('guaopencard_addSku_All') : `${guaopencard_addSku}`);
+guaopencard = $.isNode() ? (process.env.guaopencard119 ? process.env.guaopencard119 : `${guaopencard}`) : ($.getdata('guaopencard119') ? $.getdata('guaopencard119') : `${guaopencard}`);
 guaopencard = $.isNode() ? (process.env.guaopencard_All ? process.env.guaopencard_All : `${guaopencard}`) : ($.getdata('guaopencard_All') ? $.getdata('guaopencard_All') : `${guaopencard}`);
-guaopenwait = $.isNode() ? (process.env.guaopenwait118 ? process.env.guaopenwait118 : `${guaopenwait}`) : ($.getdata('guaopenwait118') ? $.getdata('guaopenwait118') : `${guaopenwait}`);
+guaopenwait = $.isNode() ? (process.env.guaopenwait119 ? process.env.guaopenwait119 : `${guaopenwait}`) : ($.getdata('guaopenwait119') ? $.getdata('guaopenwait119') : `${guaopenwait}`);
 guaopenwait = $.isNode() ? (process.env.guaopenwait_All ? process.env.guaopenwait_All : `${guaopenwait}`) : ($.getdata('guaopenwait_All') ? $.getdata('guaopenwait_All') : `${guaopenwait}`);
 guaopenwait = parseInt(guaopenwait, 10) || 0
+guaopencard_draw = $.isNode() ? (process.env.guaopencard_draw119 ? process.env.guaopencard_draw119 : guaopencard_draw) : ($.getdata('guaopencard_draw119') ? $.getdata('guaopencard_draw119') : guaopencard_draw);
+guaopencard_draw = $.isNode() ? (process.env.guaopencard_draw ? process.env.guaopencard_draw : guaopencard_draw) : ($.getdata('guaopencard_draw') ? $.getdata('guaopencard_draw') : guaopencard_draw);
 allMessage = ""
 message = ""
 $.hotFlag = false
@@ -66,7 +87,7 @@ let activityCookie =''
 !(async () => {
   if ($.isNode()) {
     if(guaopencard+"" != "true"){
-      console.log('如需执行脚本请设置环境变量[guaopencard118]为"true"')
+      console.log('如需执行脚本请设置环境变量[guaopencard119]为"true"')
     }
     if(guaopencard+"" != "true"){
       return
@@ -78,11 +99,14 @@ let activityCookie =''
     });
     return;
   }
-  $.assistStatus = false
-  $.activityId = "2203100041074702"
-  $.shareUuid = "af3f291da4674ebb98867de45925567e"
-  console.log(`入口:\nhttps://lzkjdz-isv.isvjcloud.com/m/1000410747/99/${$.activityId}/?helpUuid=${$.shareUuid}`)
-  
+  $.activityId = "dzlhkk068d4d0ab8a6609723002f50"
+  $.shareUuid = "69f28825a78e48db8c2dd956efb1532f"
+  console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
+  // let shareUuidArr = [$.shareUuid,"6f0650b15067453dac092041256a3a91","3f8fddc8e0d24d9aac3955293cb84317","3161d0706c06486bba086ee70e55ad13","0444857b01104656b9c1faf44f8e51f4","9723708ba3284a4c807448d27bee7452","271f49e18b6140ff89b1822f492a1c0f","b90173179c834e90980f858870da68b2","fb5ec3da087c4ebbb7bd8a2378925607","159f9b2b6833471f9e9f4834d6611b6f"]
+  // let s = Math.floor((Math.random()*10))
+  // let n = 0
+  // if(s >= 1 && s<= 4) n = Math.floor((Math.random()*shareUuidArr.length))
+  // if($.time("dd") == "17") $.shareUuid = shareUuidArr[n] ? shareUuidArr[n] : $.shareUuid
 
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
@@ -98,26 +122,12 @@ let activityCookie =''
       await run();
     }
   }
-  cookie = cookiesArr[0];
-  if (cookie && $.assistStatus && !$.outFlag && !$.activityEnd) {
-    $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-    $.index = 1;
-    message = ""
-    $.bean = 0
-    $.hotFlag = false
-    $.nickName = '';
-    console.log(`\n\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
-    await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
-    await getUA()
-    await run();
-  }
-  
   if($.outFlag) {
     let msg = '此ip已被限制，请过10分钟后再执行脚本'
     $.msg($.name, ``, `${msg}`);
   }
   if(allMessage){
-    //$.msg($.name, ``, `${allMessage}`);
+    $.msg($.name, ``, `${allMessage}`);
     // if ($.isNode()) await notify.sendNotify(`${$.name}`, `${allMessage}`);
   }
 })()
@@ -127,9 +137,9 @@ let activityCookie =''
 
 async function run() {
   try {
-    // $.hasEnd = true
+    $.joinShopStatus = true
+    $.hasEnd = true
     $.endTime = 0
-    $.assistCount = 0
     lz_jdpin_token_cookie = ''
     $.Token = ''
     $.Pin = ''
@@ -151,58 +161,146 @@ async function run() {
       console.log('此ip已被限制，请过10分钟后再执行脚本\n')
       return
     }
+    await takePostRequest('getSimpleActInfoVo');
     await takePostRequest('getMyPing');
     if(!$.Pin){
       console.log('获取[Pin]失败！')
       return
     }
     await takePostRequest('accessLogWithAD');
-    await takePostRequest('getOpenCardStatusWithOutSelf');
+    await takePostRequest('getUserInfo');
     await takePostRequest('activityContent');
-    await getSimpleActInfoVo()
-    if($.hasEnd === true || Date.now() > $.endTime || Date.now()< $.startTimes){
-      $.activityEnd = true
-      console.log('不在活动范围内')
-      return
-    }
     if($.hotFlag) return
     if(!$.actorUuid){
       console.log('获取不到[actorUuid]退出执行，请重新执行')
       return
     }
-    // console.log($.actorUuid)
+    if($.hasEnd === true || Date.now() > $.endTime){
+      $.activityEnd = true
+      console.log('活动结束')
+      return
+    }
+    await takePostRequest('drawContent');
+    await $.wait(1000)
+    $.openList = []
+    $.allOpenCard = false
+    await takePostRequest('info');
+    await takePostRequest('checkOpenCard');
+    //  console.log($.actorUuid)
     // return
-    if($.openStatus == 0){
-      console.log('开卡')
-      $.joinVenderId = 1000410747
-      await joinShop()
-      if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
-        console.log('第1次 重新开卡')
-        await $.wait(parseInt(Math.random() * 2000 + 3000, 10))
-        await joinShop()
+    if($.allOpenCard == false){
+      console.log('开卡任务')
+      for(o of $.openList){
+        $.openCard = false
+        if(o.status == 0){
+          flag = true
+          $.joinVenderId = o.venderId
+          $.errorJoinShop = ''
+          await joinShop()
+          if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+            console.log('第1次 重新开卡')
+            await $.wait(parseInt(Math.random() * 2000 + 3000, 10))
+            await joinShop()
+          }
+          if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+            console.log('第2次 重新开卡')
+            await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+            await joinShop()
+          }
+          if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+            console.log('第3次 重新开卡')
+            await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+            await joinShop()
+          }
+          if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+            console.log('第4次 重新开卡')
+            await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+            await joinShop()
+          }
+          if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+            console.log('第5次 重新开卡')
+            await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+            await joinShop()
+          }
+          if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+            console.log("开卡失败❌ ，重新执行脚本")
+            allMessage += `【账号${$.index}】开卡失败❌ ，重新执行脚本\n`
+            $.joinShopStatus = false
+          }
+          await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+          await takePostRequest('activityContent');
+          await takePostRequest('drawContent');
+          await takePostRequest('checkOpenCard');
+          await $.wait(parseInt(Math.random() * 3000 + 2000, 10))
+        }
       }
-      if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
-        console.log('第2次 重新开卡')
+    }else{
+      console.log('已全部开卡')
+    }
+    
+    $.log("关注: " + $.followShop)
+    if(!$.followShop && !$.outFlag){
+      flag = true
+      await takePostRequest('followShop');
+      await $.wait(parseInt(Math.random() * 2000 + 3000, 10))
+    }
+
+    $.yaoqing = false
+    await takePostRequest('邀请');
+    if($.yaoqing){
+      await takePostRequest('助力');
+    }
+    $.log("加购: " + $.addCart)
+    if(!$.addCart && !$.outFlag){
+      if(guaopencard_addSku+"" == "true"){
+        flag = true
+        let goodsArr = []
+        if(cleanCart){
+          goodsArr = await cleanCart.clean(cookie,'https://jd.smiek.tk/jdcleancatr_21102717','')
+          await $.wait(parseInt(Math.random() * 1000 + 4000, 10))
+        }
+        await takePostRequest('addCart');
         await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
-        await joinShop()
-      }
-      if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
-        console.log('第3次 重新开卡')
-        await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
-        await joinShop()
-      }
-      if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
-        console.log("开卡失败❌ ，重新执行脚本")
-        allMessage += `【账号${$.index}】开卡失败❌ ，重新执行脚本\n`
+        if(cleanCart && goodsArr !== false){
+          // await $.wait(parseInt(Math.random() * 1000 + 4000, 10))
+          await cleanCart.clean(cookie,'https://jd.smiek.tk/jdcleancatr_21102717',goodsArr || [ ])
+        }
       }else{
-        $.assistStatus = true
+        console.log('如需加购请设置环境变量[guaopencard_addSku119]为"true"');
       }
+    }
+    if(flag){
       await takePostRequest('activityContent');
     }
-    console.log($.openStatus === 1 ? "已开卡" : $.openStatus === 0 ? "未开卡" : "未知-"+$.openStatus)
-    console.log($.helpStatus === 2 ? "助力成功" : $.helpStatus === 3 ? "已助力" : $.helpStatus === 4 ? "助力他人" : $.helpStatus === 1 ? "未助力" : $.helpStatus === 0 ? "不能助力自己" : $.helpStatus === 5 ? "已开卡 无法助力" : "未知-"+$.helpStatus)
-    console.log(`【账号${$.index}】助力人数：${$.assistCount}`)
-
+    console.log(`${$.score}值`)
+    if(guaopencard_draw+"" !== "0" && $.joinShopStatus){
+      $.runFalag = true
+      let count = parseInt($.score/100)
+      guaopencard_draw = parseInt(guaopencard_draw, 10)
+      if(count > guaopencard_draw) count = guaopencard_draw
+      console.log(`抽奖次数为:${count}`)
+      for(m=1;count--;m++){
+        console.log(`第${m}次抽奖`)
+        await takePostRequest('抽奖');
+        if($.runFalag == false) break
+        if(Number(count) <= 0) break
+        if(m >= 10){
+          console.log("抽奖太多次，多余的次数请再执行脚本")
+          break
+        }
+        await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
+      }
+    }else console.log('如需抽奖请设置环境变量[guaopencard_draw119]为"3" 3为次数');
+    
+    await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
+    await takePostRequest('getDrawRecordHasCoupon');
+    await takePostRequest('getShareRecord');
+    if($.outFlag){
+      console.log('此ip已被限制，请过10分钟后再执行脚本\n')
+      return
+    }
+    await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
+    if(flag) await $.wait(parseInt(Math.random() * 1000 + 10000, 10))
     if(guaopenwait){
       if($.index != cookiesArr.length){
         console.log(`等待${guaopenwait}秒`)
@@ -218,76 +316,139 @@ async function run() {
 }
 
 async function takePostRequest(type) {
-  if ($.outFlag) return
-  let domain = 'https://lzkjdz-isv.isvjcloud.com';
+  if($.outFlag) return
+  let domain = 'https://lzdz1-isv.isvjcloud.com';
   let body = ``;
   let method = 'POST'
   let admJson = ''
   switch (type) {
     case 'isvObfuscator':
       url = `https://api.m.jd.com/client.action?functionId=isvObfuscator`;
-      body = `body=%7B%22url%22%3A%22https%3A//lzkjdz-isv.isvjcloud.com%22%2C%22id%22%3A%22%22%7D&uuid=9a79133855e4ed42e83cda6c58b51881c4519236&client=apple&clientVersion=10.1.4&st=1647263148203&sv=102&sign=53ee02a59dece3c480e3fcb067c49954`;
+      body = `body=%7B%22url%22%3A%22https%3A//lzdz1-isv.isvjcloud.com%22%2C%22id%22%3A%22%22%7D&uuid=9bedc1528ce297b982ce8bb0a8785ae48c18500e&client=apple&clientVersion=10.1.4&st=1646363852923&sv=111&sign=24a34053625f61226d89fd9402c42f6a`;
       break;
-    case 'getMyPing':
-      url = `${domain}/customer/getMyPing`;
-      body = `token=${$.Token}&fromType=APP&userId=1000410747&pin=`;
-      break;
-    case 'getSimpleActInfoVo':
-      url = `${domain}/common/brand/getSimpleActInfoVo`;
-      body = `activityId=${$.activityId}`;
-      break;
-    case 'accessLogWithAD':
-      url = `${domain}/common/accessLogWithAD`;
-      let pageurl = `https://lzkjdz-isv.isvjcloud.com/m/1000410747/99/2203100041074702/?helpUuid=${$.shareUuid}`
-      body = `venderId=1000410747&code=99&pin=${encodeURIComponent($.Pin)}&activityId=${$.activityId}&pageUrl=${encodeURIComponent(pageurl)}`
-      break;
-    case 'getOpenCardStatusWithOutSelf':
-      url = `${domain}/crmCard/common/coupon/getOpenCardStatusWithOutSelf`;
-      body = `venderId=1000410747&activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}`;
-      break;
-    case 'activityContent':
-      url = `${domain}/lamer/invite/activityContent`;
-      body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&shareUuid=${$.shareUuid}`
-      break;
-    case 'getDrawRecordHasCoupon':
-      url = `${domain}/dingzhi/taskact/common/getDrawRecordHasCoupon`;
-      body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}`
-      break;
-    case 'getShareRecord':
-      url = `${domain}/dingzhi/taskact/common/getShareRecord`;
-      body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}`
-      break;
-    default:
-      console.log(`错误${type}`);
-  }
-  let myRequest = getPostRequest(url, body, method);
-  // console.log(myRequest)
-  return new Promise(async resolve => {
-    $.post(myRequest, (err, resp, data) => {
-      try {
-        setActivityCookie(resp)
-        if (err) {
-          if (resp && typeof resp.statusCode != 'undefined') {
-            if (resp.statusCode == 493) {
-              console.log('此ip已被限制，请过10分钟后再执行脚本\n')
-              $.outFlag = true
-            }
-          }
-          console.log(`${$.toStr(err, err)}`)
-          console.log(`${type} API请求失败，请检查网路重试`)
-        } else {
-          dealReturn(type, data);
+      case 'getSimpleActInfoVo':
+        url = `${domain}/dz/common/getSimpleActInfoVo`;
+        body = `activityId=${$.activityId}`;
+        break;
+      case 'getMyPing':
+        url = `${domain}/customer/getMyPing`;
+        body = `userId=${$.shopId || $.venderId || ''}&token=${$.Token}&fromType=APP`;
+        break;
+      case 'accessLogWithAD':
+        url = `${domain}/common/accessLogWithAD`;
+        let pageurl = `${domain}/drawCenter/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`
+        body = `venderId=${$.shopId || $.venderId || ''}&code=99&pin=${encodeURIComponent($.Pin)}&activityId=${$.activityId}&pageUrl=${encodeURIComponent(pageurl)}&subType=app&adSource=`
+        break;
+      case 'getUserInfo':
+        url = `${domain}/wxActionCommon/getUserInfo`;
+        body = `pin=${encodeURIComponent($.Pin)}`;
+        break;
+      case 'activityContent':
+        url = `${domain}/dingzhi/linkgame/activity/content`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&pinImg=${encodeURIComponent($.attrTouXiang)}&nick=${encodeURIComponent($.nickname)}&cjyxPin=&cjhyPin=&shareUuid=${$.shareUuid}`
+        break;
+      case 'drawContent':
+        url = `${domain}/dingzhi/taskact/common/drawContent`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}`
+        break;
+      case 'checkOpenCard':
+        url = `${domain}/dingzhi/linkgame/checkOpenCard`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&shareUuid=${$.shareUuid}`
+        break;
+      case 'info':
+        url = `${domain}/dingzhi/linkgame/task/opencard/info`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}`
+        break;
+      case 'startDraw':
+        url = `${domain}/joint/order/draw`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&drawType=1`
+        break;
+      case 'followShop':
+        url = `${domain}/dingzhi/opencard/follow/shop`;
+        // url = `${domain}/dingzhi/dz/openCard/saveTask`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}`
+        break;
+      case 'sign':
+      case 'addCart':
+      case 'browseGoods':
+        url = `${domain}/dingzhi/opencard/${type}`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}`
+        if(type == 'browseGoods') body += `&value=${$.visitSkuValue}`
+        break;
+      case '邀请':
+      case '助力':
+        if(type == '助力'){
+          url = `${domain}/dingzhi/linkgame/assist`;
+        }else{
+          url = `${domain}/dingzhi/linkgame/assist/status`;
         }
-      } catch (e) {
-        // console.log(data);
-        console.log(e, resp)
-      } finally {
-        resolve();
-      }
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&shareUuid=${$.shareUuid}`
+        break;
+      case 'viewVideo':
+      case 'visitSku':
+      case 'toShop':
+      case 'addSku':
+        url = `${domain}/dingzhi/opencard/${type}`;
+        let taskType = ''
+        let taskValue = ''
+        if(type == 'viewVideo'){
+          taskType = 31
+          taskValue = 31
+        }else if(type == 'visitSku'){
+          taskType = 5
+          taskValue = $.visitSkuValue || 5
+        }else if(type == 'toShop'){
+          taskType = 14
+          taskValue = $.toShopValue || 14
+        }else if(type == 'addSku'){
+          taskType = 2
+          taskValue = $.addSkuValue || 2
+        }
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&taskType=${taskType}&taskValue=${taskValue}`
+        break;
+      case 'getDrawRecordHasCoupon':
+        url = `${domain}/dingzhi/linkgame/draw/record`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}`
+        break;
+      case 'getShareRecord':
+        url = `${domain}/dingzhi/linkgame/help/list`;
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}`
+        break;
+      case '抽奖':
+        url = `${domain}/dingzhi/opencard/draw`;
+        body = `activityId=${$.activityId}&actorUuid=${$.actorUuid}&pin=${encodeURIComponent($.Pin)}`
+        break;
+      default:
+        console.log(`错误${type}`);
+    }
+    let myRequest = getPostRequest(url, body, method);
+    // console.log(myRequest)
+    return new Promise(async resolve => {
+      $.post(myRequest, (err, resp, data) => {
+        try {
+          setActivityCookie(resp)
+          if (err) {
+            if(resp && typeof resp.statusCode != 'undefined'){
+              if(resp.statusCode == 493){
+                console.log('此ip已被限制，请过10分钟后再执行脚本\n')
+                $.outFlag = true
+              }
+            }
+            console.log(`${$.toStr(err,err)}`)
+            console.log(`${type} API请求失败，请检查网路重试`)
+          } else {
+            dealReturn(type, data);
+          }
+        } catch (e) {
+          // console.log(data);
+          console.log(e, resp)
+        } finally {
+          resolve();
+        }
+      })
     })
-  })
-}
-
+  }
+  
 async function dealReturn(type, data) {
   let res = ''
   try {
@@ -316,6 +477,20 @@ async function dealReturn(type, data) {
           console.log(data)
         }
         break;
+      case 'getSimpleActInfoVo':
+        if(typeof res == 'object'){
+          if(res.result && res.result === true){
+            if(typeof res.data.shopId != 'undefined') $.shopId = res.data.shopId
+            if(typeof res.data.venderId != 'undefined') $.venderId = res.data.venderId
+          }else if(res.errorMessage){
+            console.log(`${type} ${res.errorMessage || ''}`)
+          }else{
+            console.log(`${type} ${data}`)
+          }
+        }else{
+          console.log(`${type} ${data}`)
+        }
+        break;
       case 'getMyPing':
         if(typeof res == 'object'){
           if(res.result && res.result === true){
@@ -330,20 +505,11 @@ async function dealReturn(type, data) {
           console.log(`${type} ${data}`)
         }
         break;
-      case 'activityContent':
+      case 'getUserInfo':
         if(typeof res == 'object'){
-          // console.log(data)
           if(res.result && res.result === true){
-            $.actorUuid = res.data.customerId || ''
-            $.helpStatus = res.data.helpStatus || 0
-            $.openStatus = res.data.openStatus || 0
-            $.assistCount = res.data.assistCount || 0
-            if(res.data.sendBeanNum){
-              console.log(`获得${res.data.sendBeanNum}豆`)
-              allMessage += `【账号${$.index}】获得${res.data.sendBeanNum}豆\n`
-            }
+            if(res.data && typeof res.data.yunMidImageUrl != 'undefined') $.attrTouXiang = res.data.yunMidImageUrl || "https://img10.360buyimg.com/imgzone/jfs/t1/7020/27/13511/6142/5c5138d8E4df2e764/5a1216a3a5043c5d.png"
           }else if(res.errorMessage){
-            if(res.errorMessage.indexOf("结束") > -1) $.activityEnd = true
             console.log(`${type} ${res.errorMessage || ''}`)
           }else{
             console.log(`${type} ${data}`)
@@ -352,12 +518,114 @@ async function dealReturn(type, data) {
           console.log(`${type} ${data}`)
         }
         break;
-      case 'getOpenCardStatusWithOutSelf':
+      case 'activityContent':
         if(typeof res == 'object'){
-          if(res.isOk){
-            $.allOpenCard = res.openCard || false
-          }else if(res.errorMessage || res.msg){
-            console.log(`${type} ${res.errorMessage || res.msg || ''}`)
+          if(res.result && res.result === true){
+            $.endTime = res.data.endTime || (res.data.activityVo && res.data.activityVo.endTime) || res.data.activity.endTime || 0
+            $.hasEnd = res.data.isEnd || false
+            $.drawCount = res.data.actor.drawCount || 0
+            $.point = res.data.actor.point || 0
+            $.score = res.data.actor.score || 0
+            $.actorUuid = res.data.actor.actorUuid || ''
+            $.followShop = res.data.actor.followShopStatus || ''
+          }else if(res.errorMessage){
+            console.log(`${type} ${res.errorMessage || ''}`)
+          }else{
+            console.log(`${type} ${data}`)
+          }
+        }else{
+          console.log(`${type} ${data}`)
+        }
+        break;
+      case 'info':
+        if(typeof res == 'object'){
+          if(res.result && res.result === true){
+            // $.drawCount = res.data.drawCount || 0
+            $.addCart = res.data.addCart || false
+            // $.followShop = res.data.followShop || false
+            // $.sign = res.data.isSignStatus || false
+            // $.visitSku = res.data.visitSku || false
+            // $.visitSkuList = res.data.visitSkuList || []
+          }else if(res.errorMessage){
+            console.log(`${type} ${res.errorMessage || ''}`)
+          }else{
+            console.log(`${type} ${data}`)
+          }
+        }else{
+          console.log(`${type} ${data}`)
+        }
+        break;
+      case 'checkOpenCard':
+        if(typeof res == 'object'){
+          if(res.result && res.result === true){
+            let cardList1 = res.data.cardList1 || []
+            let cardList2 = res.data.cardList2 || []
+            let cardList = res.data.cardList || []
+            let openCardList = res.data.openCardList || []
+            $.openList = [...cardList,...cardList1,...cardList2,...openCardList]
+            $.allOpenCard = res.data.allOpenCard || res.data.isOpenCardStatus || false
+            $.openCardScore1 = res.data.score1 || 0
+            $.openCardScore2 = res.data.score2 || 0
+            $.drawScore = res.data.drawScore || 0
+            if(res.data.beans || res.data.addBeanNum) console.log(`开卡获得:${res.data.beans || res.data.addBeanNum}豆`)
+          }else if(res.errorMessage){
+            console.log(`${type} ${res.errorMessage || ''}`)
+          }else{
+            console.log(`${type} ${data}`)
+          }
+        }else{
+          console.log(`${type} ${data}`)
+        }
+        break;
+      case 'startDraw':
+      case 'followShop':
+      case 'viewVideo':
+      case 'visitSku':
+      case 'toShop':
+      case 'addSku':
+      case 'sign':
+      case 'addCart':
+      case 'browseGoods':
+      case '抽奖':
+        if(typeof res == 'object'){
+          if(res.result && res.result === true){
+            if(typeof res.data == 'object'){
+              let msg = ''
+              let title = '抽奖'
+              if(res.data.addBeanNum){
+                msg = `${res.data.addBeanNum}京豆`
+              }
+              if(res.data.addPoint){
+                msg += ` ${res.data.addPoint}游戏机会`
+              }
+              if(type == 'followShop'){
+                title = '关注'
+                if(res.data.beanNumMember && res.data.assistSendStatus){
+                  msg += ` 额外获得:${res.data.beanNumMember}京豆`
+                }
+              }else if(type == 'addSku' || type == 'addCart'){
+                title = '加购'
+              }else if(type == 'viewVideo'){
+                title = '热门文章'
+              }else if(type == 'toShop'){
+                title = '浏览店铺'
+              }else if(type == 'visitSku' || type == 'browseGoods'){
+                title = '浏览商品'
+              }else if(type == 'sign'){
+                title = '签到'
+              }else{
+                msg = res.data.drawOk == true && (res.data.drawInfoType == 6 && res.data.name || '') || '空气💨'
+              }
+              if(!msg){
+                msg = '空气💨'
+              }
+              console.log(`${title}获得:${msg || data}`)
+            }else{
+              console.log(`${type} ${data}`)
+            }
+          }else if(res.errorMessage){
+            $.runFalag = false;
+            console.log(`${type} ${res.errorMessage || ''}`)
           }else{
             console.log(`${type} ${data}`)
           }
@@ -371,21 +639,13 @@ async function dealReturn(type, data) {
             console.log(`我的奖品：`)
             let num = 0
             let value = 0
-            let typeArr = {
-              "dayShareBeans":"邀请",
-              "dayBeSharedBeans":"被邀请",
-              "openCardBeans":"开卡",
-              "saveTaskBeans23":"关注",
-              "saveTaskBeans12":"逛店铺",
-              "saveTaskBeans21":"加购",
-            }
-            for(let i in res.data){
-              let item = res.data[i]
-              if(item.drawId == 'dayShareBeans'){
+            for(let i in res.data.recordList){
+              let item = res.data.recordList[i]
+              if(item.infoName == '20京豆' && item.drawStatus == 0){
                 num++
                 value = item.infoName.replace('京豆','')
               }else{
-                console.log(`${item.infoType != 10 && item.drawId && (typeArr[item.drawId] || item.drawId)+':' || item.value && item.value +':' || ''}${item.infoName}`)
+                console.log(`${item.infoType != 10 && item.value && item.value +':' || ''}${item.infoName}`)
               }
             }
             if(num > 0) console.log(`邀请好友(${num}):${num*parseInt(value, 10) || 30}京豆`)
@@ -401,8 +661,8 @@ async function dealReturn(type, data) {
       case 'getShareRecord':
         if(typeof res == 'object'){
           if(res.result && res.result === true && res.data){
-            $.ShareCount = res.data.length
-            $.log(`=========== 你邀请了:${res.data.length}个`)
+            $.ShareCount = res.data.shareList.length
+            $.log(`=========== 你邀请了:${res.data.shareList.length}个\n由于接口数据只有30个 故邀请大于30个的需要自行判断\n`)
           }else if(res.errorMessage){
             console.log(`${type} ${res.errorMessage || ''}`)
           }else{
@@ -412,6 +672,29 @@ async function dealReturn(type, data) {
           console.log(`${type} ${data}`)
         }
         break;
+      case '邀请':
+      case '助力':
+        // console.log(data)
+        if(typeof res == 'object'){
+          if(res.data.status == 200){
+            if(type == '助力'){
+              console.log('助力成功')
+            }else{
+              $.yaoqing = true
+            }
+          }else if(res.data.status == 105){
+            console.log('已经助力过')
+          }else if(res.data.status == 104){
+            console.log('已经助力其他人')
+          }else if(res.data.status == 101){
+            // console.log('已经助力过')
+          }else{
+            console.log(data)
+          }
+        }else{
+          console.log(`${type} ${data}`)
+        }
+
       case 'accessLogWithAD':
       case 'drawContent':
         break;
@@ -441,8 +724,8 @@ function getPostRequest(url, body, method="POST") {
     "User-Agent": $.UA,
     "X-Requested-With": "XMLHttpRequest"
   }
-  if(url.indexOf('https://lzkjdz-isv.isvjcloud.com') > -1){
-    headers["Referer"] = `https://lzkjdz-isv.isvjcloud.com/m/1000410747/99/2203100041074702/?helpUuid=${$.shareUuid}`
+  if(url.indexOf('https://lzdz1-isv.isvjcloud.com') > -1){
+    headers["Referer"] = `https://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`
     headers["Cookie"] = `${lz_jdpin_token_cookie && lz_jdpin_token_cookie || ''}${$.Pin && "AUTH_C_USER=" + $.Pin + ";" || ""}${activityCookie}`
   }
   // console.log(headers)
@@ -450,68 +733,12 @@ function getPostRequest(url, body, method="POST") {
   return  {url: url, method: method, headers: headers, body: body, timeout:30000};
 }
 
-function getSimpleActInfoVo() {
-  return new Promise(resolve => {
-    let get = {
-      url:`https://lzkjdz-isv.isvjcloud.com/common/brand/getSimpleActInfoVo?activityId=2203100041074702`,
-      headers: {
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-cn",
-        "Connection": "keep-alive",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Cookie": cookie,
-        "Referer": `https://lzkjdz-isv.isvjcloud.com/m/1000410747/99/2203100041074702/?helpUuid=${$.shareUuid}`,
-        "User-Agent": $.UA,
-      },
-      timeout:30000
-    }
-    $.get(get, async(err, resp, data) => {
-      try {
-        if (err) {
-          if(resp && typeof resp.statusCode != 'undefined'){
-            if(resp.statusCode == 493){
-              console.log('此ip已被限制，请过10分钟后再执行脚本\n')
-              $.outFlag = true
-            }
-          }
-          console.log(`${$.toStr(err)}`)
-          console.log(`${$.name} cookie API请求失败，请检查网路重试`)
-        } else {
-          let res = $.toObj(data,data);
-          if(typeof res == 'object'){
-            if(res.result && res.result === true){
-              $.endTime = res.data.endTime || 0
-              $.startTimes = res.data.startTime || Date.now()
-            }else if(res.errorMessage){
-              console.log(`${res.errorMessage || ''}`)
-            }else{
-              console.log(`${data}`)
-            }
-          }else{
-            console.log(`${data}`)
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve();
-      }
-    })
-  })
-}
 function getCk() {
   return new Promise(resolve => {
     let get = {
-      url:`https://lzkjdz-isv.isvjcloud.com/wxCommonInfo/token`,
+      url:`https://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`,
+      followRedirect:false,
       headers: {
-        "Accept": "application/json, text/plain, */*",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-cn",
-        "Connection": "keep-alive",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Cookie": cookie,
-        "Referer": `https://lzkjdz-isv.isvjcloud.com/m/1000410747/99/2203100041074702/?helpUuid=${$.shareUuid}`,
         "User-Agent": $.UA,
       },
       timeout:30000
@@ -577,6 +804,7 @@ function randomString(e) {
     n += t.charAt(Math.floor(Math.random() * a));
   return n
 }
+
 
 function joinShop() {
   if(!$.joinVenderId) return
@@ -663,6 +891,7 @@ function getshopactivityId() {
     })
   })
 }
+
 
 function jsonParse(str) {
   if (typeof str == "string") {
