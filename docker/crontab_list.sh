@@ -82,14 +82,10 @@
 0 0,9 * * * node /scripts/jd_ddworld_exchangebean.js >> /scripts/logs/jd_ddworld_exchangebean.log 2>&1
 #jd_pay_contract
 35 21 */3 * * node /scripts/jd_pay_contract.js >> /scripts/logs/jd_pay_contract.log 2>&1
-#jd_opencard124
-30 0,3 * * * node /scripts/jd_opencard124.js >> /scripts/logs/jd_opencard124.log 2>&1
-#jd_opencard126
-30 1,9 * * * node /scripts/jd_opencard126.js >> /scripts/logs/jd_opencard126.log 2>&1
-#jd_opencard127
-30 2,12 * * * node /scripts/jd_opencard127.js >> /scripts/logs/jd_opencard127.log 2>&1
-#jd_opencard128
-30 3,15 * * * node /scripts/jd_opencard128.js >> /scripts/logs/jd_opencard128.log 2>&1
+#jd_opencard129
+30 1,18,22 7-14 4 * node /scripts/jd_opencard129.js >> /scripts/logs/jd_opencard129.log 2>&1
+#jd_opencard1281
+01 2,18,23 7-14 4 * node /scripts/jd_opencard1281.js >> /scripts/logs/jd_opencard1281.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
