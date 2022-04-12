@@ -1,7 +1,7 @@
 /*
 京东手机狂欢城活动，每日可获得20+以上京豆（其中20京豆是往期奖励，需第一天参加活动后，第二天才能拿到）
 活动时间: 2022-04-06至2022-04-22
-活动入口：暂无 [活动地址](https://carnivalcity.m.jd.com/)
+活动入口：暂无 [活动地址](https://welfare.m.jd.com/)
 
 往期奖励：
 a、第1名、第618名可获得实物手机一部
@@ -87,7 +87,7 @@ let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*
     if (allMessage) {
         //NODE端,默认每月一日运行进行推送通知一次
         if ($.isNode()) {
-            await notify.sendNotify($.name, allMessage, { url: "https://carnivalcity.m.jd.com/" });
+            await notify.sendNotify($.name, allMessage, { url: "https://welfare.m.jd.com/" });
             $.msg($.name, '', allMessage);
         }
     }
@@ -474,7 +474,7 @@ function lottery() {
                     if (data.code === 200) {
                         if (data.data.prizeId !== 8) {
                             //已中奖
-                            const url = 'https://carnivalcity.m.jd.com/#/integralDetail';
+                            const url = 'https://welfare.m.jd.com/#/integralDetail';
                             console.log(`积分抽奖获得:${data.data.prizeName}`);
                             message += `积分抽奖获得：${data.data.prizeName}\n`;
                             $.msg($.name, '', `京东账号 ${$.index} ${$.nickName || $.UserName}\n积分抽奖获得：${data.data.prizeName}\n兑换地址：${url}`, { 'open-url': url });
@@ -512,7 +512,7 @@ function check() {
                         }
                     }
                     if (str.length > 0) {
-                        const url = 'https://carnivalcity.m.jd.com/#/integralDetail';
+                        const url = 'https://welfare.m.jd.com/#/integralDetail';
                         $.msg($.name, '', `京东账号 ${$.index} ${$.nickName || $.UserName}\n积分抽奖获得：${str}\n兑换地址：${url}`, { 'open-url': url });
                         if ($.isNode()) await notify.sendNotify($.name, `京东账号 ${$.index} ${$.nickName || $.UserName}\n积分抽奖获得：${str}\n兑换地址：${url}`);
                     }
@@ -750,10 +750,10 @@ function taskUrl(body = {}) {
             "Host": "api.m.jd.com",
             "Accept": "application/json, text/plain, */*",
             "Content-Type": "application/x-www-form-urlencoded",
-            "Origin": "https://carnivalcity.m.jd.com",
+            "Origin": "https://welfare.m.jd.com",
             "Accept-Language": "zh-CN,zh-Hans;q=0.9",
             "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
-            "Referer": "https://carnivalcity.m.jd.com/",
+            "Referer": "https://welfare.m.jd.com/",
             "Accept-Encoding": "gzip, deflate, br",
             "Cookie": cookie
         }
@@ -807,9 +807,9 @@ function TotalBean() {
 
 async function showMsg() {
     if ($.beans) {
-        allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n本次运行获得：${$.beans}京豆\n${message}活动地址：https://carnivalcity.m.jd.com/${$.index !== cookiesArr.length ? '\n\n' : ''}`
+        allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n本次运行获得：${$.beans}京豆\n${message}活动地址：https://welfare.m.jd.com/${$.index !== cookiesArr.length ? '\n\n' : ''}`
     }
-    $.msg($.name, `京东账号${$.index} ${$.nickName || $.UserName}`, `${message}具体详情点击弹窗跳转后即可查看`, {"open-url": "https://carnivalcity.m.jd.com/"});
+    $.msg($.name, `京东账号${$.index} ${$.nickName || $.UserName}`, `${message}具体详情点击弹窗跳转后即可查看`, {"open-url": "https://welfare.m.jd.com/"});
 }
 
 function jsonParse(str) {
