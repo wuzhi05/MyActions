@@ -86,6 +86,10 @@
 30 1,18,22 7-14 4 * node /scripts/jd_opencard129.js >> /scripts/logs/jd_opencard129.log 2>&1
 #jd_opencard1281
 01 2,18,23 7-14 4 * node /scripts/jd_opencard1281.js >> /scripts/logs/jd_opencard1281.log 2>&1
+#jd_carnivalcity
+1 0,6,12,18 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
+#jd_carnivalcity
+10 0,8,23 * * * node /scripts/jd_carnivalcity_help.js >> /scripts/logs/jd_carnivalcity_help.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
