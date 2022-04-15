@@ -82,10 +82,6 @@
 0 0,9 * * * node /scripts/jd_ddworld_exchangebean.js >> /scripts/logs/jd_ddworld_exchangebean.log 2>&1
 #jd_pay_contract
 35 21 */3 * * node /scripts/jd_pay_contract.js >> /scripts/logs/jd_pay_contract.log 2>&1
-#jd_opencard129
-30 1,18,22 7-14 4 * node /scripts/jd_opencard129.js >> /scripts/logs/jd_opencard129.log 2>&1
-#jd_opencard1281
-01 2,18,23 7-14 4 * node /scripts/jd_opencard1281.js >> /scripts/logs/jd_opencard1281.log 2>&1
 #jd_carnivalcity
 1 0,6,12,18 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 #jd_carnivalcity
