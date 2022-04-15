@@ -92,6 +92,8 @@
 20 1,16,21 13-20 4 * node /scripts/jd_opencard131.js >> /scripts/logs/jd_opencard131.log 2>&1
 #jd_opencard132
 10 2,17,22 13-29 4 * node /scripts/jd_opencard132.js >> /scripts/logs/jd_opencard132.log 2>&1
+#jd_opencard133
+5 1,14,19 15-25 4 * node /scripts/jd_opencard133.js >> /scripts/logs/jd_opencard133.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
