@@ -86,10 +86,6 @@
 1 0,6,12,18 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 #jd_carnivalcity
 10 0,8,23 * * * node /scripts/jd_carnivalcity_help.js >> /scripts/logs/jd_carnivalcity_help.log 2>&1
-#jd_opencard130
-40 0,15,20 13-20 4 * node /scripts/jd_opencard130.js >> /scripts/logs/jd_opencard130.log 2>&1
-#jd_opencard131
-20 1,16,21 13-20 4 * node /scripts/jd_opencard131.js >> /scripts/logs/jd_opencard131.log 2>&1
 #jd_opencard132
 10 2,17,22 13-29 4 * node /scripts/jd_opencard132.js >> /scripts/logs/jd_opencard132.log 2>&1
 #jd_opencard133
