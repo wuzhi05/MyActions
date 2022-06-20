@@ -82,24 +82,6 @@
 35 21 */3 * * node /scripts/jd_pay_contract.js >> /scripts/logs/jd_pay_contract.log 2>&1
 #jd_dwapp
 33 5,17 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
-#jd_opencard166
-30 0,9,20 1-20 6 * node /scripts/jd_opencard166.js >> /scripts/logs/jd_opencard166.log 2>&1
-#jd_opencard167
-10 1,10 1-20 6 * node /scripts/jd_opencard167.js >> /scripts/logs/jd_opencard167.log 2>&1
-#jd_opencard168
-20 2,11 1-20 6 * node /scripts/jd_opencard168.js >> /scripts/logs/jd_opencard168.log 2>&1
-#jd_opencard169
-40 3,12 1-20 6 * node /scripts/jd_opencard169.js >> /scripts/logs/jd_opencard169.log 2>&1
-#jd_opencard170
-30 4,13 1-20 6 * node /scripts/jd_opencard170.js >> /scripts/logs/jd_opencard170.log 2>&1
-#jd_opencard177
-25 5,14 1-20 6 * node /scripts/jd_opencard177.js >> /scripts/logs/jd_opencard177.log 2>&1
-#jd_opencard178
-50 6,15 1-20 6 * node /scripts/jd_opencard178.js >> /scripts/logs/jd_opencard178.log 2>&1
-#jd_opencard183
-33 7,16 1-20 6 * node /scripts/jd_opencard183.js >> /scripts/logs/jd_opencard183.log 2>&1
-#jd_opencard182
-28 8,17 1-20 6 * node /scripts/jd_opencard182.js >> /scripts/logs/jd_opencard182.log 2>&1
 ##############长期活动##############
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
