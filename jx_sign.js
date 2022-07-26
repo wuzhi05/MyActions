@@ -73,10 +73,8 @@ if ($.isNode()) {
       if (!isLoginInfo[$.UserName]) continue
       if (JX_FIRST_RUNTASK === '5') {
         $.signhb_source = '5'
-
       } else if (JX_FIRST_RUNTASK === '1000') {
         $.signhb_source = '1000'
-
       }
       await signhb(1)
       await $.wait(500)
@@ -112,23 +110,19 @@ if ($.isNode()) {
         console.log(`开始运行喜豆任务`)
         $.taskName = '喜豆'
         $.signhb_source = '5'
-
         await main()
         console.log(`\n开始运行红包任务`)
         $.taskName = '红包'
         $.signhb_source = '1000'
-
         await main(false)
       } else if (JX_FIRST_RUNTASK === '1000') {
         console.log(`开始运行红包任务`)
         $.taskName = '红包'
         $.signhb_source = '1000'
-
         await main()
         console.log(`\n开始运行喜豆任务`)
         $.taskName = '喜豆'
         $.signhb_source = '5'
-
         await main(false)
       }
     }
@@ -316,11 +310,8 @@ function helpSignhb(smp = '') {
           for (let key of Object.keys(signlist)) {
             let vo = signlist[key]
             if (vo.istoday === 1) {
-              // 猜测：1=已签到；3=未签到
-              if (vo.status === 1 || vo.status === 3) {
-                if (data.todaysign === 1) {
-                  // console.log(`今日已签到`)
-                }
+              if (vo.status === 1 && data.todaysign === 1) {
+                // console.log(`今日已签到`)
               } else {
                 console.log(`此账号已黑`)
                 $.black = true
@@ -591,7 +582,6 @@ Date.prototype.Format = function (fmt) {
 }
 
 async function requestAlgo() {
-
   $.fingerprint = await generateFp();
   const options = {
     "url": `https://cactus.jd.com/request_algo?g_ty=ajax`,
@@ -673,7 +663,7 @@ function decrypt(time, stk, type, url) {
     const hash2 = $.CryptoJS.HmacSHA256(st, hash1.toString()).toString($.CryptoJS.enc.Hex);
     // console.log(`\nst:${st}`)
     // console.log(`h5st:${["".concat(timestamp.toString()), "".concat(fingerprint.toString()), "".concat($.appId.toString()), "".concat(token), "".concat(hash2)].join(";")}\n`)
-        return encodeURIComponent(["".concat(timestamp.toString()), "".concat($.fingerprint.toString()), "".concat($.appId.toString()), "".concat($.token), "".concat(hash2), "".concat("3.0"), "".concat(time)].join(";"))
+    return encodeURIComponent(["".concat(timestamp.toString()), "".concat($.fingerprint.toString()), "".concat($.appId.toString()), "".concat($.token), "".concat(hash2), "".concat("3.0"), "".concat(time)].join(";"))
   } else {
     return '20210318144213808;8277529360925161;10001;tk01w952a1b73a8nU0luMGtBanZTHCgj0KFVwDa4n5pJ95T/5bxO/m54p4MtgVEwKNev1u/BUjrpWAUMZPW0Kz2RWP8v;86054c036fe3bf0991bd9a9da1a8d44dd130c6508602215e50bb1e385326779d'
   }

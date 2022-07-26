@@ -263,6 +263,12 @@ async function doTask() {
         if (!data.moreShopList) {
           data.moreShopList = [];
         }
+        if (!data.goodShopList) {
+          data.goodShopList = [];
+        }
+        if (!data.moreShopList) {
+          data.moreShopList = [];
+        }
         const { goodShopList, moreShopList } = data;
         for (let i of goodShopList) {
           if (i.taskState === '2') {
