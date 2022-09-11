@@ -935,10 +935,14 @@ async function receiveFriendInvite() {
     }
     await inviteFriend(code);
     // console.log(`接收邀请成为好友结果:${JSON.stringify($.inviteFriendRes.helpResult)}`)
-    if ($.inviteFriendRes.helpResult.code === '0') {
-      console.log(`接收邀请成为好友结果成功,您已成为${$.inviteFriendRes.helpResult.masterUserInfo.nickName}的好友`)
-    } else if ($.inviteFriendRes && $.inviteFriendRes.helpResult && $.inviteFriendRes.helpResult.code === '17') {
-      console.log(`接收邀请成为好友结果失败,对方已是您的好友`)
+    if ($.inviteFriendRes.helpResult && $.inviteFriendRes.helpResult.code) {
+       if ($.inviteFriendRes.helpResult.code === '0') {
+         console.log(`接收邀请成为好友结果成功,您已成为${$.inviteFriendRes.helpResult.masterUserInfo.nickName}的好友`)
+       } else if ($.inviteFriendRes && $.inviteFriendRes.helpResult && $.inviteFriendRes.helpResult.code === '17') {
+         console.log(`接收邀请成为好友结果失败,对方已是您的好友`)
+       }
+    } else {
+       console.log(`接收邀请成为好友结果:${JSON.stringify($.inviteFriendRes.helpResult)}`)
     }
   }
   // console.log(`开始接受6fbd26cc27ac44d6a7fed34092453f77的邀请\n`)
