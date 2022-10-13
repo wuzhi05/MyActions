@@ -83,6 +83,8 @@
 #jd_dwapp
 33 5,17 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 ##############长期活动##############
+# 保价test
+0 20 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
 # 签到
 0 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
 # 摇京豆
@@ -95,7 +97,6 @@
 5 6-18/6 * * * node /scripts/jd_pet.js >> /scripts/logs/jd_pet.log 2>&1
 # 京东种豆得豆
 0  */6 * * * node /scripts/jd_plantBean.js >> /scripts/logs/jd_plantBean.log 2>&1
-
 # 进店领豆
 10 0 * * * node /scripts/jd_shop.js >> /scripts/logs/jd_shop.log 2>&1
 # 东东超市
